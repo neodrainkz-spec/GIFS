@@ -1,0 +1,52 @@
+/* GIFS homepage v2 — clear, editorial, premium */
+.home-v2{--cream:#f5efe2;--muted:#c9c2b5;--gold:#d0ad73;--line:rgba(255,255,255,.18);--glass:rgba(8,16,13,.34);background:#0a120f;color:var(--cream)}
+.home-v2::before{content:"";position:fixed;inset:-24px;z-index:0;background:url('assets/gifs-hero-final.webp') center/cover no-repeat;filter:blur(22px) brightness(.38) saturate(.86);transform:scale(1.05);opacity:1!important}
+.home-v2::after{content:"";position:fixed;inset:0;z-index:3;pointer-events:none;background:linear-gradient(90deg,rgba(5,11,9,.96) 0%,rgba(5,11,9,.82) 27%,rgba(5,11,9,.34) 52%,rgba(5,11,9,.08) 72%,rgba(5,11,9,.32) 100%),linear-gradient(180deg,rgba(5,11,9,.54),transparent 24%,transparent 70%,rgba(5,11,9,.76))!important}
+.home-v2 .garden-header{position:fixed;top:0;left:clamp(24px,4vw,68px);right:clamp(24px,4vw,68px);height:92px;z-index:20;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:28px;background:none}
+.home-v2 .garden-logo{font:30px/1.2 Prata,Georgia,serif;letter-spacing:.2em;color:#fff;padding:0;text-shadow:none}
+.home-v2 .garden-header>p{margin:0;justify-self:center;font:11px/1.4 Arial,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,239,226,.64)}
+.home-v2 .direct-contact{font:12px/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;border:1px solid rgba(255,255,255,.32);border-radius:999px;padding:13px 17px;color:#fff;background:rgba(255,255,255,.04);backdrop-filter:blur(8px);transition:.25s ease}
+.home-v2 .direct-contact:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55)}
+.home-v2 .garden-main{position:fixed;inset:0;display:block;overflow:hidden}
+.home-v2 .home-copy{position:absolute;left:clamp(28px,6.2vw,108px);top:50%;z-index:10;width:min(560px,40vw);transform:translateY(-48%);padding-top:18px}
+.home-v2 .home-kicker{font:11px/1.5 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin:0 0 24px}
+.home-v2 .home-copy h1{margin:0;max-width:600px;font:400 clamp(48px,5.6vw,88px)/.98 Prata,Georgia,serif;letter-spacing:-.055em;color:#fff;text-wrap:balance}
+.home-v2 .home-copy h1 em{display:block;font:italic 400 1.05em/1.02 Cormorant,Georgia,serif;letter-spacing:-.035em;color:var(--gold)}
+.home-v2 .home-lead{max-width:500px;margin:28px 0 0;font:20px/1.45 Cormorant,Georgia,serif;color:rgba(245,239,226,.74)}
+.home-v2 .home-note{display:flex;align-items:center;gap:14px;margin-top:34px;font:11px/1.4 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:rgba(245,239,226,.58)}
+.home-v2 .home-note::before{content:"";width:44px;height:1px;background:rgba(208,173,115,.7)}
+.home-v2 .orchard{position:absolute;inset:0;left:auto;top:auto;width:100vw;height:100vh;max-width:none;max-height:none;margin:0;transform:none!important;aspect-ratio:auto;animation:none!important;overflow:hidden}
+.home-v2 .tree{position:absolute;inset:0;width:100%;height:100%;object-fit:cover!important;object-position:center center!important;filter:saturate(.92) brightness(.82) contrast(1.08)!important;transition:none}
+.home-v2 .tree-halo,.home-v2 .sky-drift,.home-v2 .small-fruit,.home-v2 .garden-inscription{display:none!important}
+.home-v2 .fruit-navigation{position:absolute;inset:0;z-index:8}
+.home-v2 .apple{--fruit-size:clamp(56px,4.8vw,76px);position:absolute;width:178px;display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-50%);z-index:9;border-radius:0;outline-offset:6px}
+.home-v2 .apple-services{left:59%!important;top:30%!important}.home-v2 .apple-atmosphere{left:73%!important;top:24%!important}.home-v2 .apple-case{left:80%!important;top:49%!important}.home-v2 .apple-contact{left:65%!important;top:58%!important}
+.home-v2 .apple-swing{width:var(--fruit-size);height:var(--fruit-size);filter:saturate(.98) contrast(1.08) brightness(.96) drop-shadow(0 12px 12px rgba(0,0,0,.5));animation:fruit-wind 5.5s ease-in-out infinite alternate;transform-origin:50% 0;transition:transform .25s ease,filter .25s ease}
+.home-v2 .apple:hover .apple-swing,.home-v2 .apple:focus-visible .apple-swing{filter:saturate(1.12) contrast(1.06) brightness(1.12) drop-shadow(0 15px 16px rgba(0,0,0,.64));transform:scale(1.07)}
+.home-v2 .apple-label{display:flex!important;align-items:center;justify-content:center;gap:9px;width:auto!important;height:auto!important;min-width:138px;margin-top:5px!important;padding:8px 11px!important;border:1px solid rgba(255,255,255,.22)!important;border-radius:999px!important;background:rgba(7,14,11,.56)!important;box-shadow:0 10px 24px rgba(0,0,0,.2)!important;backdrop-filter:blur(10px);color:#fff!important;font:11px/1 Arial,sans-serif!important;letter-spacing:.08em!important;text-transform:uppercase;white-space:nowrap}
+.home-v2 .apple-label b{font-weight:400;color:var(--gold)}
+.home-v2 .apple-label strong{font-weight:600;color:#fff}
+.home-v2 .apple-caption{display:none!important}
+.home-v2 .scene-light{position:fixed;inset:0;z-index:2;background:radial-gradient(circle at 72% 24%,rgba(255,183,97,.16),transparent 34%),linear-gradient(115deg,rgba(255,168,78,.08),transparent 54%);mix-blend-mode:soft-light;pointer-events:none}
+.home-v2 .scene-caption{display:none}
+.home-v2 .garden-footer{position:fixed;left:clamp(24px,4vw,68px);right:clamp(24px,4vw,68px);bottom:0;height:64px;z-index:20;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr auto 1fr;align-items:center;color:rgba(245,239,226,.48);font:11px/1 Arial,sans-serif;letter-spacing:.06em;background:none}
+.home-v2 .garden-controls{display:flex;gap:22px;justify-self:center}.home-v2 .garden-controls button,.home-v2 .credits-link{font:11px/1 Arial,sans-serif;color:rgba(245,239,226,.56);min-height:auto;padding:8px 0}.home-v2 .credits-link{justify-self:end}.home-v2 .garden-controls button:hover,.home-v2 .credits-link:hover{color:#fff}
+.home-v2 .page-transition{background:#09120e;color:#fff}
+@media(max-width:900px){
+ .home-v2::after{background:linear-gradient(90deg,rgba(5,11,9,.93),rgba(5,11,9,.66) 45%,rgba(5,11,9,.14) 74%),linear-gradient(180deg,rgba(5,11,9,.5),transparent 30%,transparent 68%,rgba(5,11,9,.72))!important}
+ .home-v2 .home-copy{width:min(520px,52vw);left:36px}.home-v2 .home-copy h1{font-size:clamp(44px,7vw,70px)}
+ .home-v2 .apple-services{left:63%!important}.home-v2 .apple-atmosphere{left:78%!important}.home-v2 .apple-case{left:84%!important}.home-v2 .apple-contact{left:69%!important}
+}
+@media(max-width:680px){
+ .home-v2::before{filter:blur(16px) brightness(.34) saturate(.82)}
+ .home-v2::after{background:linear-gradient(180deg,rgba(5,11,9,.84) 0%,rgba(5,11,9,.25) 35%,rgba(5,11,9,.16) 58%,rgba(5,11,9,.86) 100%)!important}
+ .home-v2 .garden-header{left:20px;right:20px;height:68px;grid-template-columns:auto 1fr}.home-v2 .garden-header>p{display:none}.home-v2 .garden-logo{font-size:22px}.home-v2 .direct-contact{justify-self:end;font-size:10px;padding:10px 12px}.home-v2 .direct-contact span{margin-left:5px}
+ .home-v2 .home-copy{left:22px;right:22px;top:104px;width:auto;transform:none;padding:0}.home-v2 .home-kicker{font-size:9px;margin-bottom:12px}.home-v2 .home-copy h1{font-size:clamp(38px,11.4vw,54px);line-height:.98;max-width:470px}.home-v2 .home-lead{font-size:17px;line-height:1.3;margin-top:14px;max-width:390px}.home-v2 .home-note{display:none}
+ .home-v2 .tree{object-position:50% center!important;filter:saturate(.9) brightness(.72) contrast(1.08)!important}
+ .home-v2 .apple{--fruit-size:42px;width:132px}.home-v2 .apple-label{min-width:108px;padding:6px 8px!important;font-size:9px!important;gap:6px}
+ .home-v2 .apple-services{left:28%!important;top:57%!important}.home-v2 .apple-atmosphere{left:65%!important;top:52%!important}.home-v2 .apple-case{left:75%!important;top:67%!important}.home-v2 .apple-contact{left:40%!important;top:71%!important}
+ .home-v2 .garden-footer{left:20px;right:20px;height:58px;grid-template-columns:1fr auto}.home-v2 .garden-controls{display:none}.home-v2 .garden-footer>span{font-size:10px}.home-v2 .credits-link{font-size:10px}
+}
+@media(max-width:400px){.home-v2 .home-copy h1{font-size:39px}.home-v2 .home-lead{font-size:16px}.home-v2 .apple{--fruit-size:38px}.home-v2 .apple-services{left:27%!important}.home-v2 .apple-atmosphere{left:66%!important}.home-v2 .apple-case{left:73%!important}.home-v2 .apple-contact{left:39%!important}}
+@media(max-height:600px) and (min-width:681px){.home-v2 .garden-header{height:60px}.home-v2 .home-copy{top:49%;width:460px}.home-v2 .home-kicker{margin-bottom:12px}.home-v2 .home-copy h1{font-size:48px}.home-v2 .home-lead{font-size:17px;margin-top:16px}.home-v2 .home-note{margin-top:18px}.home-v2 .garden-footer{height:46px}.home-v2 .apple{--fruit-size:44px}.home-v2 .apple-label{font-size:9px!important;padding:6px 8px!important}}
+@media(prefers-reduced-motion:reduce){.home-v2 .apple-swing{animation:none!important}}
