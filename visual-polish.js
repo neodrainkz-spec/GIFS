@@ -3,7 +3,6 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(pointer:fine)');
   const body = document.body;
-
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
 
   function initOrchardParallax(){
@@ -30,37 +29,10 @@
       queue();
     }, {passive:true});
 
-    addEventListener('pointerleave', () => { targetX = targetY = 0; queue(); }, {passive:true});
-  }
-
-  function initApplePointerLife(){
-    if(reduced.matches || !finePointer.matches) return;
-    document.querySelectorAll('.atelier-home .apple').forEach(apple => {
-      apple.addEventListener('pointermove', e => {
-        const rect = apple.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - .5;
-        const y = (e.clientY - rect.top) / rect.height - .5;
-        apple.style.setProperty('--apple-rx', (y * -2.5).toFixed(2) + 'deg');
-        apple.style.setProperty('--apple-ry', (x * 3.5).toFixed(2) + 'deg');
-      }, {passive:true});
-      apple.addEventListener('pointerleave', () => {
-        apple.style.removeProperty('--apple-rx');
-        apple.style.removeProperty('--apple-ry');
-      }, {passive:true});
-    });
-  }
-
-  function initPressFeedback(){
-    document.querySelectorAll('a,button').forEach(el => {
-      el.addEventListener('pointerdown', () => el.classList.add('gifs-pressed'));
-      const clear = () => el.classList.remove('gifs-pressed');
-      el.addEventListener('pointerup', clear);
-      el.addEventListener('pointercancel', clear);
-      el.addEventListener('pointerleave', clear);
-    });
+    addEventListener('pointerleave', () => {
+      targetX = 0; targetY = 0; queue();
+    }, {passive:true});
   }
 
   initOrchardParallax();
-  initApplePointerLife();
-  initPressFeedback();
 })();
