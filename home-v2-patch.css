@@ -1,0 +1,5 @@
+.home-v2.atelier-home[data-weather="gold"] .tree{filter:saturate(.92) brightness(.82) contrast(1.08)!important}
+.home-v2.atelier-home[data-weather="gold"] .scene-light{background:radial-gradient(circle at 72% 24%,rgba(255,183,97,.16),transparent 34%),linear-gradient(115deg,rgba(255,168,78,.08),transparent 54%)!important;mix-blend-mode:soft-light!important}
+.home-v2 .apple:hover,.home-v2 .apple:focus-visible{transform:translate(-50%,-50%) scale(1.02)}
+.home-v2 .apple::after{display:none!important}
+.home-v2 .direct-contact::after{display:none}
