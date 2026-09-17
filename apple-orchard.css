@@ -1,0 +1,78 @@
+/* The apple tree fills the scene. All fruit positions share its 900 × 760 coordinate system. */
+.atelier-home{background:radial-gradient(ellipse at 50% 44%,#243329 0%,#141e18 47%,#0b120f 100%)}
+.atelier-home::after{left:50%;top:52%;opacity:.5}
+.atelier-home .garden-header{height:76px}
+.atelier-home .garden-header>p{margin:0;font-size:10px;letter-spacing:.19em}
+.atelier-home .garden-main{inset:calc(76px + env(safe-area-inset-top,0px)) 20px calc(58px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;justify-content:center;overflow:hidden}
+.atelier-home .orchard{position:relative;flex:none;justify-self:auto;width:min(calc((100dvh - 134px)*900/760),calc(100vw - 42px),1000px);height:auto;max-width:none;max-height:100%;aspect-ratio:900/760;margin:0;overflow:visible;isolation:isolate}
+.atelier-home .tree{inset:0;width:100%;height:100%;object-fit:fill;filter:drop-shadow(0 28px 30px rgba(0,0,0,.52)) saturate(.88) brightness(.93)}
+.atelier-home .tree-halo,.atelier-home .garden-inscription{display:none}
+.atelier-home .fruit-navigation,.atelier-home .small-fruit{position:absolute;inset:0}
+.atelier-home .small-fruit{z-index:2;pointer-events:none}
+.atelier-home .apple{--fruit-size:clamp(58px,8vh,83px);width:180px;transform:translate(-50%,-16%)}
+.atelier-home .apple-services{left:22%;top:40%;--fruit-size:clamp(70px,9.4vh,98px)}
+.atelier-home .apple-atmosphere{left:62%;top:30%;--fruit-size:clamp(61px,8.3vh,86px)}
+.atelier-home .apple-case{left:79%;top:46%;--fruit-size:clamp(73px,9.6vh,99px)}
+.atelier-home .apple-contact{left:43%;top:55%;--fruit-size:clamp(65px,8.7vh,90px)}
+.atelier-home .apple-stem,.atelier-home .apple::before,.atelier-home .orchard-fruit::before,.atelier-home .apple-swing::after{display:none!important;content:none!important}
+.atelier-home .apple-swing{filter:saturate(1.04) brightness(.97) drop-shadow(0 10px 13px rgba(0,0,0,.65))}
+.atelier-home .apple:hover .apple-swing,.atelier-home .apple:focus-visible .apple-swing{filter:saturate(1.2) brightness(1.12) drop-shadow(0 13px 16px rgba(0,0,0,.65))}
+.atelier-home .apple-label{width:180px;height:50px;margin-top:-1px}
+.atelier-home .apple-label text{font-size:16px;letter-spacing:.4px;stroke-width:4px;fill:#f4e4bd}
+.atelier-home .orchard-fruit{position:absolute;width:var(--fruit-size);transform:translate(-50%,-16%);opacity:.9}
+.atelier-home .orchard-fruit .apple-swing{width:var(--fruit-size);height:var(--fruit-size);filter:saturate(.84) brightness(.8) drop-shadow(0 7px 8px rgba(0,0,0,.55))}
+.atelier-home .orchard-fruit::before{height:23px;top:-18px}
+.atelier-home .orchard-fruit .apple-swing::after{width:9px;height:5px}
+.atelier-home .apple:focus-visible .apple-label,.atelier-home .apple:hover .apple-label{filter:drop-shadow(0 0 8px rgba(233,197,129,.7))}
+.atelier-home .apple .apple-swing{animation:apple-breathe 5.5s ease-in-out infinite alternate;animation-delay:var(--delay);transform-origin:50% 35%}
+.atelier-home .apple:hover .apple-swing,.atelier-home .apple:focus-visible .apple-swing{animation:apple-invite .95s ease-in-out infinite alternate}
+@keyframes apple-breathe{from{transform:translateY(1px) rotate(-2deg)}to{transform:translateY(-4px) rotate(2deg)}}
+@keyframes apple-invite{from{transform:translateY(0) rotate(-4deg) scale(1.04)}to{transform:translateY(-7px) rotate(4deg) scale(1.1)}}
+.atelier-home .fruit-one{left:34%;top:27%;--fruit-size:34px;--delay:-2.1s;--tilt:-8deg}
+.atelier-home .fruit-two{left:72%;top:29%;--fruit-size:29px;--delay:-.8s;--tilt:6deg}
+.atelier-home .fruit-three{left:16%;top:51%;--fruit-size:42px;--delay:-3.2s;--tilt:5deg}
+.atelier-home .fruit-four{left:56%;top:56%;--fruit-size:36px;--delay:-1.5s;--tilt:-6deg}
+.atelier-home .fruit-five{left:63%;top:40%;--fruit-size:27px;--delay:-3.8s;--tilt:7deg}
+.atelier-home .garden-footer{height:58px}
+.atelier-home .landing-spark{position:fixed;z-index:21;width:4px;height:4px;border-radius:50%;background:#e6c990;box-shadow:0 0 12px #efd39c;pointer-events:none}
+.atelier-home .page-transition{background:radial-gradient(circle at var(--cx,50%) var(--cy,60%),#394e38,#101b17 65%)}
+.atelier-home .transition-name{font-size:clamp(25px,4vw,54px);letter-spacing:.12em;text-transform:uppercase;color:#e8d5ad}
+.atelier-home .transition-word{opacity:.55}
+@media(max-width:680px){
+  .atelier-home .garden-header{height:62px}
+  .atelier-home .garden-header>p{display:none}
+  .atelier-home .garden-main{inset:calc(62px + env(safe-area-inset-top,0px)) 8px calc(72px + env(safe-area-inset-bottom,0px))}
+  .atelier-home .orchard{width:min(100%,430px);max-height:100%;aspect-ratio:0.91;margin:0}
+  .atelier-home .apple{width:125px;--fruit-size:clamp(48px,14vw,64px)}
+  .atelier-home .apple-services{--fruit-size:clamp(54px,15vw,68px)}
+  .atelier-home .apple-atmosphere{--fruit-size:clamp(49px,13.5vw,62px)}
+  .atelier-home .apple-case{--fruit-size:clamp(57px,15vw,70px)}
+  .atelier-home .apple-contact{left:49%;top:61%;--fruit-size:clamp(53px,14vw,66px)}
+  .atelier-home .apple-label{width:136px;height:40px;margin-top:-2px;padding:0}
+  .atelier-home .apple-label text{font-size:15px;letter-spacing:.15px;stroke-width:3.5px}
+  .atelier-home .orchard-fruit{--fruit-size:25px}
+  .atelier-home .fruit-two,.atelier-home .fruit-five{--fruit-size:22px}
+  .atelier-home .fruit-three{--fruit-size:30px}
+  .atelier-home .garden-footer{height:62px}
+}
+@media(max-width:680px) and (max-height:600px){
+  .atelier-home .garden-main{top:58px;bottom:48px}
+  .atelier-home .orchard{width:min(calc((100dvh - 106px)*.91),calc(100vw - 16px))}
+  .atelier-home .apple{--fruit-size:42px}
+  .atelier-home .apple-services,.atelier-home .apple-case{--fruit-size:48px}
+  .atelier-home .apple-atmosphere,.atelier-home .apple-contact{--fruit-size:44px}
+  .atelier-home .apple-label{width:112px;height:34px}
+  .atelier-home .apple-label text{font-size:14px}
+  .atelier-home .orchard-fruit{--fruit-size:20px}
+  .atelier-home .fruit-three{--fruit-size:24px}
+  .atelier-home .garden-footer{height:44px}
+}
+@media(max-height:500px) and (min-width:681px){
+  .atelier-home .garden-header{height:54px}
+  .atelier-home .garden-main{top:54px;bottom:41px;display:flex}
+  .atelier-home .orchard{width:min(calc((100dvh - 95px)*900/760),calc(100vw - 42px))}
+  .atelier-home .apple{--fruit-size:43px;width:110px}
+  .atelier-home .apple-label{width:115px;height:34px;margin-top:-2px;padding:0}
+  .atelier-home .apple-label text{font-size:14px}
+  .atelier-home .orchard-fruit{--fruit-size:20px}
+}
