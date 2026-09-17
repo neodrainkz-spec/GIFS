@@ -1,4 +1,4 @@
-/* Exact user-supplied Almaty tree hero: keep the tree visible. */
+/* Exact user-supplied Almaty tree hero: tree first, UI second. */
 .home-v2::before{
   background:#0a100d!important;
   filter:none!important;
@@ -6,22 +6,23 @@
 }
 .home-v2::after{
   background:
-    linear-gradient(90deg,rgba(5,10,8,.68) 0%,rgba(5,10,8,.44) 27%,rgba(5,10,8,.12) 48%,rgba(5,10,8,.02) 72%,rgba(5,10,8,.06) 100%),
-    linear-gradient(180deg,rgba(5,10,8,.16),transparent 28%,transparent 72%,rgba(5,10,8,.30))!important;
+    linear-gradient(90deg,rgba(5,10,8,.48) 0%,rgba(5,10,8,.24) 28%,rgba(5,10,8,.05) 48%,transparent 72%),
+    linear-gradient(180deg,rgba(5,10,8,.12),transparent 28%,transparent 72%,rgba(5,10,8,.22))!important;
 }
 .home-v2.atelier-home[data-weather="gold"] .tree,
 .home-v2 .tree{
   object-fit:cover!important;
   object-position:center center!important;
-  filter:saturate(1) brightness(.98) contrast(1.02)!important;
+  filter:saturate(1.03) brightness(1.01) contrast(1.02)!important;
   opacity:1!important;
 }
 .home-v2.atelier-home[data-weather="gold"] .scene-light,
 .home-v2 .scene-light{
-  background:radial-gradient(circle at 24% 48%,rgba(255,183,92,.14),transparent 34%)!important;
+  background:radial-gradient(circle at 24% 48%,rgba(255,183,92,.10),transparent 34%)!important;
   mix-blend-mode:soft-light!important;
 }
-.home-v2 .home-copy{text-shadow:0 2px 22px rgba(0,0,0,.55)}
+.home-v2 .home-copy{width:min(520px,35vw);text-shadow:0 2px 26px rgba(0,0,0,.9)}
+.home-v2 .home-copy h1{font-size:clamp(44px,4.9vw,78px)}
 .home-v2 .apple-services{left:55%!important;top:28%!important}
 .home-v2 .apple-atmosphere{left:69%!important;top:22%!important}
 .home-v2 .apple-case{left:78%!important;top:43%!important}
@@ -29,8 +30,9 @@
 .home-v2 .apple:hover,.home-v2 .apple:focus-visible{transform:translate(-50%,-50%) scale(1.02)}
 .home-v2 .apple::after,.home-v2 .direct-contact::after{display:none!important}
 @media(max-width:680px){
-  .home-v2::after{background:linear-gradient(180deg,rgba(5,10,8,.50) 0%,rgba(5,10,8,.12) 34%,rgba(5,10,8,.04) 64%,rgba(5,10,8,.42) 100%)!important}
-  .home-v2 .tree{object-position:42% center!important;filter:saturate(1) brightness(.94) contrast(1.02)!important}
+  .home-v2::after{background:linear-gradient(180deg,rgba(5,10,8,.36) 0%,rgba(5,10,8,.08) 34%,rgba(5,10,8,.02) 64%,rgba(5,10,8,.34) 100%)!important}
+  .home-v2 .tree{object-position:42% center!important;filter:saturate(1.02) brightness(.98) contrast(1.02)!important}
+  .home-v2 .home-copy{width:auto}
   .home-v2 .apple-services{left:34%!important;top:55%!important}
   .home-v2 .apple-atmosphere{left:62%!important;top:49%!important}
   .home-v2 .apple-case{left:72%!important;top:64%!important}
