@@ -1,0 +1,30 @@
+name: Materialize hero image
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/materialize-hero.yml'
+      - '.hero-parts/**'
+
+permissions:
+  contents: write
+
+jobs:
+  materialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Rebuild hero image
+        shell: bash
+        run: |
+          cat .hero-parts/hero.part* | tr -d '[:space:]' | base64 --decode > assets/gifs-hero-almaty.webp
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet -- assets/gifs-hero-almaty.webp; then
+            git add assets/gifs-hero-almaty.webp
+            git commit -m "Materialize full-resolution Almaty hero"
+            git push
+          fi
