@@ -1,0 +1,132 @@
+/* GIFS — final typography and motion layer */
+:root{
+  --ease-out-expo:cubic-bezier(.16,1,.3,1);
+  --ease-soft:cubic-bezier(.22,.8,.2,1);
+  --ease-silk:cubic-bezier(.2,.65,.18,1);
+  --motion-fast:240ms;
+  --motion-medium:520ms;
+  --motion-slow:900ms;
+}
+
+html{font-kerning:normal;text-rendering:optimizeLegibility}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+::selection{background:rgba(140,51,72,.22);color:inherit}
+
+/* More editorial type hierarchy without changing the existing brand fonts. */
+.garden-logo,.wordmark{font-feature-settings:"kern" 1,"liga" 1;letter-spacing:.105em;text-wrap:balance}
+.garden-header>p,.garden-eyebrow,.eyebrow,.chapter-kicker,.chapter-era,.service-number{font-feature-settings:"kern" 1,"liga" 1;letter-spacing:.16em}
+.garden-intro h1,.section-top h2,.chapter-copy h1,.chapter-copy h2,.brief-art p{
+  font-feature-settings:"kern" 1,"liga" 1;
+  text-wrap:balance;
+  text-rendering:geometricPrecision;
+}
+.garden-intro h1{letter-spacing:-.035em!important}
+.section-top h2,.chapter-copy h1,.chapter-copy h2{letter-spacing:-.03em!important}
+.garden-description,.service-body p,.case-story,.chapter-description,.brief-content,legend{letter-spacing:.003em}
+
+/* Header and navigation polish. */
+.garden-logo,.wordmark,.direct-contact,.back,.credits-link,.text-action,.story-action,
+.garden-controls button,.service-tabs button,.exhibit-controls button{
+  transition:color var(--motion-fast) ease,opacity var(--motion-fast) ease,transform var(--motion-medium) var(--ease-out-expo),border-color var(--motion-fast) ease,background-color var(--motion-fast) ease;
+}
+.garden-logo:hover,.wordmark:hover{transform:translateY(-1px);opacity:.94}
+.direct-contact,.back,.credits-link,.text-action,.story-action{position:relative}
+.direct-contact::after,.back::after,.credits-link::after,.text-action::after,.story-action::after{
+  content:"";position:absolute;left:0;right:0;bottom:3px;height:1px;background:currentColor;
+  transform:scaleX(0);transform-origin:right center;transition:transform var(--motion-medium) var(--ease-out-expo);opacity:.48;
+}
+.direct-contact:hover::after,.back:hover::after,.credits-link:hover::after,.text-action:hover::after,.story-action:hover::after{
+  transform:scaleX(1);transform-origin:left center;
+}
+.direct-contact:hover,.back:hover,.text-action:hover,.story-action:hover{transform:translateY(-2px)}
+
+/* Apple interaction: more depth, softer sway, clearer focus. */
+.atelier-home .apple{
+  isolation:isolate;
+  transition:transform var(--motion-medium) var(--ease-out-expo),filter var(--motion-medium) ease;
+}
+.atelier-home .apple::after{
+  content:"";position:absolute;left:50%;top:5%;width:calc(var(--fruit-size) * 1.45);height:calc(var(--fruit-size) * 1.45);
+  border-radius:50%;transform:translate(-50%,-50%) scale(.62);z-index:-1;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,236,186,.22),rgba(255,219,146,.08) 43%,transparent 72%);
+  opacity:0;filter:blur(5px);transition:opacity var(--motion-medium) ease,transform var(--motion-slow) var(--ease-out-expo);
+}
+.atelier-home .apple:hover,.atelier-home .apple:focus-visible{transform:translate(-50%,-13%) scale(1.035)}
+.atelier-home .apple:hover::after,.atelier-home .apple:focus-visible::after{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.atelier-home .apple-swing{will-change:transform,filter;animation-timing-function:var(--ease-soft)!important}
+.atelier-home .apple:hover .apple-swing,.atelier-home .apple:focus-visible .apple-swing{
+  filter:saturate(1.08) brightness(1.09) contrast(1.04) drop-shadow(0 17px 18px rgba(0,0,0,.54))!important;
+}
+.atelier-home .apple-label{transition:transform var(--motion-medium) var(--ease-out-expo),filter var(--motion-medium) ease,opacity var(--motion-fast) ease}
+.atelier-home .apple:hover .apple-label,.atelier-home .apple:focus-visible .apple-label{transform:translateY(5px) scale(1.025);filter:drop-shadow(0 5px 12px rgba(0,0,0,.38))}
+.atelier-home .apple-label text{font-weight:400;letter-spacing:.72px!important}
+
+/* Slow cinematic scene entrance. */
+.atelier-home .garden-header{animation:gifs-header-in .9s var(--ease-out-expo) both}
+.atelier-home .scene-caption{animation:gifs-caption-in 1.15s .25s var(--ease-out-expo) both}
+.atelier-home .weather-control{animation:gifs-caption-in 1.15s .4s var(--ease-out-expo) both}
+.atelier-home .garden-footer{animation:gifs-footer-in 1s .45s var(--ease-out-expo) both}
+.atelier-home .orchard{transform-origin:center center}
+
+/* Internal pages feel less static. */
+.inside-page .masthead{animation:gifs-header-in .82s var(--ease-out-expo) both}
+.inside-page .colophon{animation:gifs-footer-in .8s .18s var(--ease-out-expo) both}
+.inside-page .section-top,.inside-page .brief-content>.eyebrow{animation:gifs-rise-in .85s .05s var(--ease-out-expo) both}
+.inside-page .service-tabs,.inside-page .exhibit-controls{animation:gifs-rise-in .85s .16s var(--ease-out-expo) both}
+.inside-page .service-body,.inside-page .case-body,.inside-page .brief-content form,.inside-page #brief-result{animation:gifs-rise-in .95s .22s var(--ease-out-expo) both}
+.inside-page .service-body>img,.inside-page .case-body figure img,.inside-page .brief-art img{
+  transition:transform 1s var(--ease-out-expo),filter .7s ease;
+}
+.inside-page .service-body>img:hover,.inside-page .case-body figure img:hover{transform:translateY(-5px) scale(1.012)}
+
+.service-tabs button,.exhibit-controls button{
+  position:relative;border-bottom-color:transparent!important;opacity:.7;
+}
+.service-tabs button::after,.exhibit-controls button::after{
+  content:"";position:absolute;left:0;right:0;bottom:2px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right center;transition:transform var(--motion-medium) var(--ease-out-expo);
+}
+.service-tabs button:hover,.exhibit-controls button:hover{opacity:1;transform:translateY(-2px)}
+.service-tabs [aria-pressed=true],.exhibit-controls [aria-pressed=true]{opacity:1}
+.service-tabs [aria-pressed=true]::after,.exhibit-controls [aria-pressed=true]::after{transform:scaleX(1);transform-origin:left center}
+
+textarea,input:not([type=checkbox]){
+  transition:border-color var(--motion-fast) ease,background-color var(--motion-fast) ease,box-shadow var(--motion-medium) ease,transform var(--motion-medium) var(--ease-out-expo);
+}
+textarea:hover,input:not([type=checkbox]):hover{background:#ede3cf66}
+textarea:focus,input:not([type=checkbox]):focus{background:#fffaf0aa;box-shadow:0 12px 34px rgba(83,53,39,.08);transform:translateY(-1px)}
+.channel-options label{transition:transform var(--motion-medium) var(--ease-out-expo),color var(--motion-fast) ease}
+.channel-options label:hover{transform:translateX(4px);color:var(--wine)}
+
+/* Atmosphere chapters: restrained editorial reveal. */
+.story-page .chapter-copy>*{transition:opacity .7s ease,transform .9s var(--ease-out-expo)}
+.story-page .story-progress a{transition:transform var(--motion-medium) var(--ease-out-expo),opacity var(--motion-fast) ease,color var(--motion-fast) ease}
+.story-page .story-progress a:hover{transform:translateX(4px);opacity:1}
+
+/* Interactive cursor parallax is written by visual-polish.js. */
+.atelier-home .orchard,.inside-page .service-body>img,.inside-page .case-body figure img{--mx:0px;--my:0px}
+.atelier-home:not(.motion-paused) .orchard{translate:var(--mx) var(--my)}
+
+@keyframes gifs-header-in{from{opacity:0;transform:translateY(-14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gifs-footer-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gifs-rise-in{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes gifs-caption-in{from{opacity:0;transform:translate(-50%,14px)}to{opacity:1;transform:translate(-50%,0)}}
+
+@media(max-width:680px){
+  .garden-logo,.wordmark{letter-spacing:.08em}
+  .atelier-home .apple:hover,.atelier-home .apple:focus-visible{transform:translate(-50%,-11%) scale(1.025)}
+  .atelier-home .apple::after{width:calc(var(--fruit-size) * 1.25);height:calc(var(--fruit-size) * 1.25)}
+  .atelier-home .apple-label text{letter-spacing:.35px!important}
+  .inside-page .service-body>img:hover,.inside-page .case-body figure img:hover{transform:none}
+}
+
+@media(pointer:coarse){
+  .atelier-home .apple::after{display:none}
+  .direct-contact:hover,.back:hover,.text-action:hover,.story-action:hover{transform:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .atelier-home .garden-header,.atelier-home .scene-caption,.atelier-home .weather-control,.atelier-home .garden-footer,
+  .inside-page .masthead,.inside-page .colophon,.inside-page .section-top,.inside-page .service-tabs,.inside-page .exhibit-controls,
+  .inside-page .service-body,.inside-page .case-body,.inside-page .brief-content form,.inside-page #brief-result{animation:none!important}
+  .atelier-home .orchard{translate:0 0!important}
+}
