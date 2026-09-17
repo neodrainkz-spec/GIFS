@@ -1,5 +1,6 @@
+.atelier-home::before{background:url('assets/gifs-hero-final.webp') center center/cover no-repeat!important;filter:blur(18px) brightness(.48)!important;opacity:1!important}
 .atelier-home .sky-drift{display:none!important}
-.atelier-home .tree{object-fit:cover!important;object-position:center center!important;filter:saturate(.92) brightness(.9) contrast(1.04)!important}
+.atelier-home .tree{object-fit:cover!important;object-position:center center!important;filter:saturate(.98) brightness(.94) contrast(1.03)!important}
 .atelier-home .apple-services{left:24%!important;top:24%!important}
 .atelier-home .apple-atmosphere{left:41%!important;top:17%!important}
 .atelier-home .apple-case{left:58%!important;top:24%!important}
@@ -9,9 +10,9 @@
 .atelier-home .fruit-three{left:50%!important;top:13%!important}
 .atelier-home .fruit-four{left:66%!important;top:30%!important}
 .atelier-home .fruit-five{left:82%!important;top:24%!important}
-.atelier-home::after{background:linear-gradient(180deg,rgba(7,18,17,.52),transparent 28%,transparent 68%,rgba(7,16,13,.72))!important}
+.atelier-home::after{background:linear-gradient(180deg,rgba(7,18,17,.28),transparent 30%,transparent 70%,rgba(7,16,13,.42))!important}
 @media(max-width:680px){
- .atelier-home .tree{object-position:43% center!important}
+ .atelier-home .tree{object-position:38% center!important}
  .atelier-home .apple-services{left:31%!important;top:22%!important}
  .atelier-home .apple-atmosphere{left:48%!important;top:16%!important}
  .atelier-home .apple-case{left:63%!important;top:27%!important}
