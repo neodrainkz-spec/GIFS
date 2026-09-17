@@ -9,8 +9,10 @@
 
 ## Публикация
 
-В `.github/workflows/pages.yml` находится чистый workflow для GitHub Pages. Он публикует текущие файлы сайта без временных `.hero-parts` и без старой сборки изображения.
+Сайт опубликован через GitHub Pages из ветки `gh-pages` и доступен по адресу:
 
-Для репозитория нужно один раз выбрать `Settings → Pages → Build and deployment → Source → GitHub Actions`. После этого workflow запускается автоматически при каждом push в `main`, а также вручную через `workflow_dispatch`.
+https://neodrainkz-spec.github.io/GIFS/
+
+Временные части hero и старые workflow сборки удалены. Ветка `main` содержит рабочие исходники сайта, а `gh-pages` — опубликованную статическую версию.
 
 Источники изображений указаны на странице `credits.html`.
