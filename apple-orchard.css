@@ -76,3 +76,24 @@
   .atelier-home .apple-label text{font-size:14px}
   .atelier-home .orchard-fruit{--fruit-size:20px}
 }
+
+/* Living meadow: the weather changes through a full loop without external media. */
+.atelier-home{background:#172d3e;overflow:hidden}
+.weather-scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:linear-gradient(180deg,#76b8d1 0%,#c8e2dc 56%,#4b8151 56.3%,#244d34 100%);animation:weather-sky 36s ease-in-out infinite}
+.weather-scene::before{content:"";position:absolute;inset:51% -10% 0;background:radial-gradient(ellipse at 15% 12%,#83ae62 0 11%,transparent 11.3%),radial-gradient(ellipse at 44% 5%,#719d58 0 14%,transparent 14.4%),radial-gradient(ellipse at 82% 11%,#6f9b53 0 17%,transparent 17.5%),linear-gradient(175deg,transparent 0 13%,#4e844d 13.5% 44%,#345f3d 44.5%);filter:saturate(.8);animation:meadow-light 36s ease-in-out infinite}
+.weather-scene::after{content:"";position:absolute;inset:56% 0 0;background:repeating-linear-gradient(97deg,transparent 0 16px,rgba(207,239,170,.22) 17px 18px,transparent 19px 38px),linear-gradient(180deg,rgba(118,171,83,.15),rgba(11,48,31,.2));opacity:.64;transform-origin:bottom;animation:grass-sway 4.8s ease-in-out infinite alternate}
+.weather-sun{position:absolute;top:12%;right:16%;width:clamp(70px,10vw,142px);aspect-ratio:1;border-radius:50%;background:#ffe8a0;box-shadow:0 0 45px 18px rgba(255,229,145,.5);animation:sun-path 36s ease-in-out infinite}
+.weather-cloud{position:absolute;width:clamp(170px,24vw,380px);height:70px;border-radius:100px;background:rgba(249,254,249,.7);filter:blur(1px);opacity:.72;animation:cloud-drift 23s linear infinite}.weather-cloud::before,.weather-cloud::after{content:"";position:absolute;border-radius:50%;background:inherit}.weather-cloud::before{width:43%;height:110%;left:18%;bottom:15%}.weather-cloud::after{width:34%;height:83%;right:16%;bottom:9%}.cloud-one{top:18%;left:-22%;animation-delay:-7s}.cloud-two{top:31%;left:-30%;width:clamp(130px,18vw,270px);opacity:.47;animation-duration:31s;animation-delay:-21s}
+.weather-rain{position:absolute;inset:0;opacity:0;background-image:repeating-linear-gradient(112deg,transparent 0 27px,rgba(219,238,242,.56) 28px 30px,transparent 31px 59px);background-size:100% 90px;animation:rain-cycle 36s linear infinite}
+.meadow{position:absolute;left:-5%;right:-5%;bottom:-2%;height:27%;border-radius:50% 50% 0 0}.meadow-back{background:radial-gradient(ellipse at 50% 100%,#497a42 0 36%,transparent 37%),radial-gradient(ellipse at 15% 100%,#5d8f4b 0 25%,transparent 26%);opacity:.85}.meadow-front{background:linear-gradient(180deg,transparent,#173a2c 86%),repeating-linear-gradient(84deg,transparent 0 19px,rgba(156,201,105,.38) 20px 22px,transparent 23px 42px);transform-origin:bottom;animation:grass-sway 3.4s ease-in-out infinite alternate}
+@keyframes weather-sky{0%,20%{background:linear-gradient(180deg,#78bbd4 0%,#cfe8dc 56%,#4b8151 56.3%,#244d34 100%)}35%,52%{background:linear-gradient(180deg,#647b91 0%,#acbdc2 56%,#486d4c 56.3%,#233f37 100%)}66%,82%{background:linear-gradient(180deg,#283b5e 0%,#8c6981 54%,#3f5d45 56.3%,#142f2b 100%)}100%{background:linear-gradient(180deg,#78bbd4 0%,#cfe8dc 56%,#4b8151 56.3%,#244d34 100%)}}
+@keyframes meadow-light{0%,20%,100%{filter:saturate(.9) brightness(1)}35%,52%{filter:saturate(.55) brightness(.76)}66%,82%{filter:saturate(.5) brightness(.48)}}
+@keyframes sun-path{0%,20%,100%{transform:translate(0,0);opacity:1}35%,52%{transform:translate(-18vw,5vh);opacity:.32}66%,82%{transform:translate(-32vw,18vh);opacity:0}}
+@keyframes cloud-drift{from{transform:translateX(0)}to{transform:translateX(145vw)}}
+@keyframes rain-cycle{0%,28%,100%{opacity:0;transform:translateY(-50px)}35%,52%{opacity:.62;transform:translateY(35px)}66%,82%{opacity:0;transform:translateY(-50px)}}
+@keyframes grass-sway{from{transform:skewX(-1.2deg) scaleX(1)}to{transform:skewX(1.2deg) scaleX(1.015)}}
+.atelier-home .garden-header,.atelier-home .garden-footer{background:rgba(10,24,18,.18);backdrop-filter:blur(5px)}
+.atelier-home .orchard{z-index:2;filter:drop-shadow(0 26px 30px rgba(5,24,15,.34))}
+.atelier-home .tree{filter:saturate(.92) sepia(.05) brightness(.98) contrast(1.04) drop-shadow(0 20px 19px rgba(8,29,18,.34))}
+.motion-paused .weather-scene,.motion-paused .weather-scene *,.document-hidden .weather-scene,.document-hidden .weather-scene *{animation-play-state:paused!important}
+@media(max-width:680px){.weather-sun{right:8%;top:9%;width:72px}.weather-scene::before{inset:54% -20% 0}.meadow{height:22%}.atelier-home .tree{filter:saturate(.9) brightness(1) contrast(1.03) drop-shadow(0 13px 12px rgba(8,29,18,.36))}}
