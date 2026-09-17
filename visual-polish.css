@@ -6,13 +6,19 @@
   --motion-fast:240ms;
   --motion-medium:520ms;
   --motion-slow:900ms;
+  --ui-font:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
 html{font-kerning:normal;text-rendering:optimizeLegibility}
 body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 ::selection{background:rgba(140,51,72,.22);color:inherit}
 
-/* More editorial type hierarchy without changing the existing brand fonts. */
+/* Editorial serif for storytelling, crisp sans for controls. */
+.garden-header>p,.direct-contact,.weather-control,.garden-footer,.garden-controls button,.credits-link,
+.back,.service-tabs button,.exhibit-controls button,.story-progress,.chapter-era,.chapter-kicker,.eyebrow,.garden-eyebrow,.service-number{
+  font-family:var(--ui-font);
+}
+.garden-header>p,.garden-eyebrow,.eyebrow,.chapter-kicker,.chapter-era,.service-number{font-size:.92em}
 .garden-logo,.wordmark{font-feature-settings:"kern" 1,"liga" 1;letter-spacing:.105em;text-wrap:balance}
 .garden-header>p,.garden-eyebrow,.eyebrow,.chapter-kicker,.chapter-era,.service-number{font-feature-settings:"kern" 1,"liga" 1;letter-spacing:.16em}
 .garden-intro h1,.section-top h2,.chapter-copy h1,.chapter-copy h2,.brief-art p{
