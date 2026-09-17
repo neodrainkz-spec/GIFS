@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101713">
+<meta name="theme-color" content="#2b2115">
 <meta name="description" content="GIFS — сайты, чат-боты и автоматизация. Выберите направление на интерактивной яблоне.">
 <title>GIFS — выберите направление</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="assets/fonts/prata.woff" as="font" type="font/woff" crossorigin>
 <link rel="preload" href="assets/fonts/ballet.woff" as="font" type="font/woff" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant.woff" as="font" type="font/woff" crossorigin>
 <link rel="stylesheet" href="orchard.css?v=20260916-3">
 <link rel="stylesheet" href="atelier.css?v=20260916-5">
 <link rel="stylesheet" href="photographic-orchard.css?v=20260917-photo">
 <link rel="stylesheet" href="orchard-polish.css?v=20260917-final">
-<link rel="stylesheet" href="visual-polish.css?v=20260917-1">
-<script src="living-orchard.js?v=20260917-photo" defer></script>
-<script src="orchard.js?v=20260916-3" defer></script>
-<script src="visual-polish.js?v=20260917-1" defer></script>
+<link rel="stylesheet" href="visual-polish.css?v=20260917-2">
+<script src="orchard.js?v=20260917-silk" defer></script>
+<script src="visual-polish.js?v=20260917-silk" defer></script>
 </head>
-<body class="orchard-page atelier-home">
+<body class="orchard-page atelier-home" data-weather="gold">
 <header class="garden-header">
   <a class="garden-logo" href="index.html" aria-label="GIFS — главная">GIFS</a>
   <p>Интерактивная студия · Алматы</p>
@@ -27,7 +27,7 @@
 <main class="garden-main">
   <section class="orchard" aria-label="Интерактивная яблоня: выберите направление GIFS">
     <span class="tree-halo" aria-hidden="true"></span>
-    <img class="tree" src="assets/real-orchard.jpg" alt="Настоящая яблоня на залитой солнцем поляне" fetchpriority="high" draggable="false">
+    <img class="tree" src="assets/real-orchard.jpg" alt="Настоящая яблоня в золотом вечернем свете" fetchpriority="high" draggable="false">
     <span class="sky-drift" aria-hidden="true"></span>
     <div class="small-fruit" aria-hidden="true">
       <span class="orchard-fruit fruit-one"><span class="apple-swing"><img src="assets/apple.webp" alt="" draggable="false"></span></span>
@@ -46,9 +46,7 @@
   </section>
 </main>
 <div class="scene-light" aria-hidden="true"></div>
-<canvas id="weather-canvas" aria-hidden="true"></canvas>
 <div class="scene-caption"><span>Выберите своё направление</span><i aria-hidden="true"></i></div>
-<button class="weather-control" id="weather-toggle" type="button" aria-label="Сменить погоду">01 <span>Солнечно</span> ↗</button>
 <footer class="garden-footer"><span>© GIFS · 2026</span><div class="garden-controls"><button id="motion-toggle" type="button" aria-pressed="false">Остановить движение</button><button id="sound-toggle" type="button" aria-pressed="false">Звук: выкл.</button></div><a class="credits-link" href="credits.html" aria-label="Источники изображений">Источники ↗</a></footer>
 <div class="page-transition" aria-hidden="true"><span class="transition-word">GIFS</span><span class="transition-name"></span></div>
 <p class="sr-only" id="garden-status" aria-live="polite" role="status"></p>
