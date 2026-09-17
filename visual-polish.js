@@ -3,36 +3,45 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const finePointer = matchMedia('(pointer:fine)');
   const body = document.body;
-  const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
+  const orchard = document.querySelector('.atelier-home .orchard');
 
-  function initOrchardParallax(){
-    const orchard = document.querySelector('.atelier-home .orchard');
-    if(!orchard || reduced.matches || !finePointer.matches) return;
+  if(!orchard || reduced.matches || !finePointer.matches) return;
 
-    let targetX = 0, targetY = 0, currentX = 0, currentY = 0, raf = 0;
-    const animate = () => {
-      currentX += (targetX - currentX) * .075;
-      currentY += (targetY - currentY) * .075;
-      orchard.style.setProperty('--mx', currentX.toFixed(2) + 'px');
-      orchard.style.setProperty('--my', currentY.toFixed(2) + 'px');
-      if(Math.abs(targetX-currentX) > .05 || Math.abs(targetY-currentY) > .05) raf = requestAnimationFrame(animate);
-      else raf = 0;
-    };
-    const queue = () => { if(!raf) raf = requestAnimationFrame(animate); };
+  let targetX = 0;
+  let targetY = 0;
+  let currentX = 0;
+  let currentY = 0;
+  let raf = 0;
 
-    addEventListener('pointermove', e => {
-      if(body.classList.contains('motion-paused')) return;
-      const nx = e.clientX / innerWidth - .5;
-      const ny = e.clientY / innerHeight - .5;
-      targetX = clamp(nx * -10, -6, 6);
-      targetY = clamp(ny * -7, -4, 4);
-      queue();
-    }, {passive:true});
+  const animate = () => {
+    currentX += (targetX - currentX) * .04;
+    currentY += (targetY - currentY) * .04;
+    orchard.style.setProperty('--mx', currentX.toFixed(2) + 'px');
+    orchard.style.setProperty('--my', currentY.toFixed(2) + 'px');
 
-    addEventListener('pointerleave', () => {
-      targetX = 0; targetY = 0; queue();
-    }, {passive:true});
-  }
+    if(Math.abs(targetX-currentX) > .02 || Math.abs(targetY-currentY) > .02){
+      raf = requestAnimationFrame(animate);
+    } else {
+      raf = 0;
+    }
+  };
 
-  initOrchardParallax();
+  const queue = () => {
+    if(!raf) raf = requestAnimationFrame(animate);
+  };
+
+  addEventListener('pointermove', event => {
+    if(body.classList.contains('motion-paused')) return;
+    const nx = event.clientX / innerWidth - .5;
+    const ny = event.clientY / innerHeight - .5;
+    targetX = Math.max(-4, Math.min(4, nx * -6));
+    targetY = Math.max(-3, Math.min(3, ny * -4));
+    queue();
+  }, {passive:true});
+
+  document.documentElement.addEventListener('mouseleave', () => {
+    targetX = 0;
+    targetY = 0;
+    queue();
+  }, {passive:true});
 })();
