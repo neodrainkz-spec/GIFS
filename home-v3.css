@@ -104,7 +104,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
   --fruit-size:56px;
   --hang-angle:0deg;
   --swing:2.2deg;
-  --lift:3px;
+  --lift:-3px;
   --stem-angle:0deg;
   --duration:7.2s;
   width:126px;
@@ -112,19 +112,19 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 }
 .home-v3 .apple-services{
   left:20.5%;top:31%;
-  --fruit-size:58px;--hang-angle:-1.4deg;--swing:2.6deg;--lift:3.5px;--stem-angle:-12deg;--duration:7.6s;
+  --fruit-size:58px;--hang-angle:-1.4deg;--swing:2.6deg;--lift:-3.5px;--stem-angle:-12deg;--duration:7.6s;
 }
 .home-v3 .apple-atmosphere{
   left:39%;top:20.5%;
-  --fruit-size:52px;--hang-angle:1.2deg;--swing:2deg;--lift:2.5px;--stem-angle:9deg;--duration:8.4s;
+  --fruit-size:52px;--hang-angle:1.2deg;--swing:2deg;--lift:-2.5px;--stem-angle:9deg;--duration:8.4s;
 }
 .home-v3 .apple-case{
   left:56%;top:34.5%;
-  --fruit-size:62px;--hang-angle:-.8deg;--swing:2.35deg;--lift:3.2px;--stem-angle:-7deg;--duration:7.9s;
+  --fruit-size:62px;--hang-angle:-.8deg;--swing:2.35deg;--lift:-3.2px;--stem-angle:-7deg;--duration:7.9s;
 }
 .home-v3 .apple-contact{
   left:72%;top:49%;
-  --fruit-size:55px;--hang-angle:1deg;--swing:2.15deg;--lift:2.9px;--stem-angle:11deg;--duration:8.8s;
+  --fruit-size:55px;--hang-angle:1deg;--swing:2.15deg;--lift:-2.9px;--stem-angle:11deg;--duration:8.8s;
 }
 .home-v3 .apple-swing{
   transform-origin:50% -10px;
@@ -176,9 +176,9 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 }
 @keyframes apple-v3-hang{
   0%,100%{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - var(--swing)))}
-  28%{transform:translate3d(1px,calc(var(--lift) * -.38),0) rotate(var(--hang-angle))}
-  58%{transform:translate3d(-1px,calc(var(--lift) * -1),0) rotate(calc(var(--hang-angle) + var(--swing)))}
-  82%{transform:translate3d(.5px,calc(var(--lift) * -.28),0) rotate(calc(var(--hang-angle) + .4deg))}
+  28%{transform:translate3d(1px,-1px,0) rotate(var(--hang-angle))}
+  58%{transform:translate3d(-1px,var(--lift),0) rotate(calc(var(--hang-angle) + var(--swing)))}
+  82%{transform:translate3d(.5px,-.7px,0) rotate(calc(var(--hang-angle) + .4deg))}
 }
 @keyframes apple-v3-invite{
   from{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - 3deg)) scale(1.015)}
