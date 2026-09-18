@@ -20,7 +20,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 .home-v3 .direct-contact{font:11px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;border:1px solid rgba(255,255,255,.56);border-radius:999px;padding:14px 19px;background:rgba(7,13,10,.12);backdrop-filter:blur(5px)}
 .home-v3 .direct-contact:hover{background:rgba(255,255,255,.12)}
 
-.home-v3 .home-copy{position:absolute;left:5.4vw;top:44%;z-index:8;width:min(440px,31vw);transform:translateY(-25%);padding:30px 28px 34px 0;text-shadow:0 3px 18px rgba(0,0,0,.74)}
+.home-v3 .home-copy{position:absolute;left:5.4vw;top:55%;z-index:8;width:min(440px,31vw);transform:translateY(-25%);padding:30px 28px 34px 0;text-shadow:0 3px 18px rgba(0,0,0,.74)}
 .home-v3 .home-kicker{margin:0 0 18px;font:10px/1.4 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
 .home-v3 .home-copy h1{margin:0;font:400 clamp(42px,4.35vw,69px)/1.02 Prata,Georgia,serif;letter-spacing:-.045em;color:#fff;text-wrap:balance}
 .home-v3 .home-copy h1 em{display:block;margin-top:3px;font:italic 400 1.04em/1 Cormorant,Georgia,serif;color:var(--gold)}
@@ -30,7 +30,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 
 .home-v3 .fruit-navigation{position:absolute;inset:0;z-index:7;width:auto;display:block;transform:none}
 .home-v3 .apple{--fruit-size:50px;position:absolute;width:132px;height:auto;display:flex;flex-direction:column;align-items:center;padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none;transform:translate(-50%,-50%);z-index:9;text-align:center;transition:filter .35s ease,opacity .35s ease}
-.home-v3 .apple-services{left:34%;top:20%}.home-v3 .apple-atmosphere{left:44%;top:28%}.home-v3 .apple-case{left:42%;top:40%}.home-v3 .apple-contact{left:36%;top:50%}
+.home-v3 .apple-services{left:31%;top:15%}.home-v3 .apple-atmosphere{left:38%;top:22%}.home-v3 .apple-case{left:35%;top:29%}.home-v3 .apple-contact{left:29%;top:36%}
 .home-v3 .apple-swing{position:relative;display:block;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% -14px;animation:apple-v3-hang 6.8s cubic-bezier(.45,0,.55,1) infinite;filter:saturate(1.02) brightness(1.03) drop-shadow(0 8px 8px rgba(0,0,0,.42));will-change:transform}
 .home-v3 .apple-swing::before{content:"";position:absolute;left:50%;top:-15px;width:1px;height:18px;background:linear-gradient(#49331f,#765035);transform:translateX(-50%);border-radius:999px}
 .home-v3 .apple:nth-child(2) .apple-swing{animation-delay:-1.8s}.home-v3 .apple:nth-child(3) .apple-swing{animation-delay:-3.6s}.home-v3 .apple:nth-child(4) .apple-swing{animation-delay:-5.4s}
@@ -54,13 +54,13 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
  .home-v3 .tree{object-position:center center;filter:none}
  .home-v3 .orchard::after{background:linear-gradient(90deg,rgba(5,10,8,.46) 0%,rgba(5,10,8,.20) 56%,rgba(5,10,8,.04) 100%),linear-gradient(180deg,rgba(5,10,8,.24) 0%,rgba(5,10,8,.06) 38%,rgba(5,10,8,.03) 68%,rgba(5,10,8,.28) 100%)}
  .home-v3 .garden-header{left:20px;right:20px;height:66px;grid-template-columns:auto 1fr}.home-v3 .garden-header>p{display:none}.home-v3 .garden-logo{font-size:21px}.home-v3 .direct-contact{justify-self:end;font-size:9px;padding:10px 12px}
- .home-v3 .home-copy{left:22px;right:22px;top:92px;width:auto;transform:none;padding:0;text-shadow:0 2px 14px rgba(0,0,0,.72)}
- .home-v3 .home-kicker{font-size:8px;margin-bottom:10px}.home-v3 .home-copy h1{font-size:clamp(32px,8.8vw,39px);max-width:60vw}.home-v3 .home-lead{font-size:14px;line-height:1.28;margin-top:12px;max-width:59vw}.home-v3 .home-note{display:none}
+ .home-v3 .home-copy{left:22px;right:22px;top:42%;width:auto;transform:none;padding:0;text-shadow:0 2px 14px rgba(0,0,0,.72)}
+ .home-v3 .home-kicker{font-size:8px;margin-bottom:10px}.home-v3 .home-copy h1{font-size:clamp(32px,8.8vw,39px);max-width:88vw}.home-v3 .home-lead{font-size:14px;line-height:1.28;margin-top:12px;max-width:88vw}.home-v3 .home-note{display:none}
  .home-v3 .fruit-navigation{inset:0;width:auto;display:block;transform:none}
- .home-v3 .apple{--fruit-size:36px;width:104px}.home-v3 .apple-label{min-width:98px;padding:6px 7px;font-size:7.5px;gap:5px}
- .home-v3 .apple-services{left:76%;top:23%}.home-v3 .apple-atmosphere{left:82%;top:34%}.home-v3 .apple-case{left:73%;top:45%}.home-v3 .apple-contact{left:81%;top:56%}
+ .home-v3 .apple{--fruit-size:46px;width:108px}.home-v3 .apple-label{min-width:100px;padding:6px 7px;font-size:7.5px;gap:5px}
+ .home-v3 .apple-services{left:56%;top:15%}.home-v3 .apple-atmosphere{left:67%;top:22%}.home-v3 .apple-case{left:51%;top:29%}.home-v3 .apple-contact{left:36%;top:36%}
  .home-v3 .garden-footer{left:20px;right:20px;height:52px;grid-template-columns:1fr auto}.home-v3 .garden-controls{display:none}.home-v3 .garden-footer>span,.home-v3 .credits-link{font-size:9px}
 }
-@media(max-height:700px) and (max-width:680px){.home-v3 .home-copy h1{font-size:31px}.home-v3 .home-lead{font-size:13px}.home-v3 .apple{--fruit-size:32px}.home-v3 .apple-services{top:22%}.home-v3 .apple-atmosphere{top:33%}.home-v3 .apple-case{top:44%}.home-v3 .apple-contact{top:55%}}
+@media(max-height:700px) and (max-width:680px){.home-v3 .home-copy{top:41%}.home-v3 .home-copy h1{font-size:31px}.home-v3 .home-lead{font-size:13px}.home-v3 .apple{--fruit-size:40px}}
 .home-v3.motion-paused .apple-swing,.home-v3.document-hidden .apple-swing{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.home-v3 .apple-swing{animation:none!important}}
