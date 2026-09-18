@@ -64,3 +64,171 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 @media(max-height:700px) and (max-width:680px){.home-v3 .home-copy{top:41%}.home-v3 .home-copy h1{font-size:31px}.home-v3 .home-lead{font-size:13px}.home-v3 .apple{--fruit-size:40px}}
 .home-v3.motion-paused .apple-swing,.home-v3.document-hidden .apple-swing{animation-play-state:paused!important}
 @media(prefers-reduced-motion:reduce){.home-v3 .apple-swing{animation:none!important}}
+
+
+/* 2026-09-18 — natural orchard composition */
+.home-v3 .orchard::after{
+  background:
+    linear-gradient(270deg,rgba(5,10,8,.34) 0%,rgba(5,10,8,.16) 23%,rgba(5,10,8,.04) 42%,rgba(5,10,8,0) 62%),
+    linear-gradient(180deg,rgba(4,8,7,.10),transparent 26%,transparent 76%,rgba(4,8,7,.16));
+}
+.home-v3 .home-copy{
+  left:auto;
+  right:5.2vw;
+  top:14.5%;
+  width:min(510px,36vw);
+  transform:none;
+  padding:0;
+  text-align:left;
+  text-shadow:0 2px 12px rgba(0,0,0,.46);
+}
+.home-v3 .home-kicker{margin-bottom:14px;color:rgba(216,180,118,.88)}
+.home-v3 .home-copy h1{
+  font-size:clamp(38px,3.55vw,58px);
+  line-height:1.035;
+  letter-spacing:-.038em;
+  color:rgba(255,255,255,.97);
+}
+.home-v3 .home-copy h1 em{margin-top:1px;color:#d8b476}
+.home-v3 .home-lead{
+  max-width:430px;
+  margin-top:17px;
+  font-size:17px;
+  line-height:1.38;
+  color:rgba(255,255,255,.82);
+}
+.home-v3 .home-note{margin-top:19px;color:rgba(255,255,255,.66)}
+.home-v3 .home-note::before{width:34px;opacity:.72}
+
+.home-v3 .apple{
+  --fruit-size:56px;
+  --hang-angle:0deg;
+  --swing:2.2deg;
+  --lift:3px;
+  --stem-angle:0deg;
+  --duration:7.2s;
+  width:126px;
+  transition:opacity .35s ease,filter .35s ease;
+}
+.home-v3 .apple-services{
+  left:20.5%;top:31%;
+  --fruit-size:58px;--hang-angle:-1.4deg;--swing:2.6deg;--lift:3.5px;--stem-angle:-12deg;--duration:7.6s;
+}
+.home-v3 .apple-atmosphere{
+  left:39%;top:20.5%;
+  --fruit-size:52px;--hang-angle:1.2deg;--swing:2deg;--lift:2.5px;--stem-angle:9deg;--duration:8.4s;
+}
+.home-v3 .apple-case{
+  left:56%;top:34.5%;
+  --fruit-size:62px;--hang-angle:-.8deg;--swing:2.35deg;--lift:3.2px;--stem-angle:-7deg;--duration:7.9s;
+}
+.home-v3 .apple-contact{
+  left:72%;top:49%;
+  --fruit-size:55px;--hang-angle:1deg;--swing:2.15deg;--lift:2.9px;--stem-angle:11deg;--duration:8.8s;
+}
+.home-v3 .apple-swing{
+  transform-origin:50% -10px;
+  animation:apple-v3-hang var(--duration) cubic-bezier(.42,0,.58,1) infinite;
+  filter:saturate(1.01) brightness(1.02) drop-shadow(0 7px 7px rgba(0,0,0,.38));
+}
+.home-v3 .apple-swing::before{
+  top:-13px;
+  height:15px;
+  width:1.5px;
+  opacity:.82;
+  background:linear-gradient(#3f2b1b,#745033);
+  transform:translateX(-50%) rotate(var(--stem-angle));
+  transform-origin:50% 100%;
+}
+.home-v3 .apple:nth-child(2) .apple-swing{animation-delay:-2.1s}
+.home-v3 .apple:nth-child(3) .apple-swing{animation-delay:-4.6s}
+.home-v3 .apple:nth-child(4) .apple-swing{animation-delay:-6.3s}
+.home-v3 .apple-label{
+  min-width:0;
+  margin-top:4px;
+  padding:2px 0;
+  gap:6px;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  backdrop-filter:none;
+  box-shadow:none;
+  font:11px/1.1 Cormorant,Georgia,serif;
+  letter-spacing:.08em;
+  color:rgba(255,255,255,.84);
+  text-shadow:0 2px 7px rgba(0,0,0,.72);
+}
+.home-v3 .apple-label b{
+  font:9px/1 Arial,sans-serif;
+  letter-spacing:.06em;
+  color:rgba(216,180,118,.86);
+}
+.home-v3 .apple-label strong{font-weight:500}
+.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{
+  animation:apple-v3-invite 1.05s cubic-bezier(.4,0,.2,1) infinite alternate;
+  filter:saturate(1.08) brightness(1.07) drop-shadow(0 10px 11px rgba(0,0,0,.46));
+}
+.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{
+  background:transparent;
+  border-color:transparent;
+  color:#fff;
+  text-shadow:0 2px 9px rgba(0,0,0,.82);
+}
+@keyframes apple-v3-hang{
+  0%,100%{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - var(--swing)))}
+  28%{transform:translate3d(1px,calc(var(--lift) * -.38),0) rotate(var(--hang-angle))}
+  58%{transform:translate3d(-1px,calc(var(--lift) * -1),0) rotate(calc(var(--hang-angle) + var(--swing)))}
+  82%{transform:translate3d(.5px,calc(var(--lift) * -.28),0) rotate(calc(var(--hang-angle) + .4deg))}
+}
+@keyframes apple-v3-invite{
+  from{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - 3deg)) scale(1.015)}
+  to{transform:translate3d(0,-5px,0) rotate(calc(var(--hang-angle) + 3deg)) scale(1.045)}
+}
+
+@media(max-width:900px) and (min-width:681px){
+  .home-v3 .home-copy{right:4vw;top:14%;width:min(420px,39vw)}
+  .home-v3 .home-copy h1{font-size:clamp(34px,4.4vw,50px)}
+  .home-v3 .home-lead{font-size:15.5px}
+  .home-v3 .apple{width:116px}
+  .home-v3 .apple-services{left:18%;top:32%;--fruit-size:52px}
+  .home-v3 .apple-atmosphere{left:38%;top:22%;--fruit-size:48px}
+  .home-v3 .apple-case{left:56%;top:37%;--fruit-size:55px}
+  .home-v3 .apple-contact{left:72%;top:51%;--fruit-size:50px}
+}
+@media(max-width:680px){
+  .home-v3 .orchard::after{
+    background:
+      linear-gradient(225deg,rgba(5,10,8,.34) 0%,rgba(5,10,8,.15) 28%,rgba(5,10,8,.03) 50%,transparent 68%),
+      linear-gradient(180deg,rgba(5,10,8,.20),rgba(5,10,8,.04) 46%,rgba(5,10,8,.20) 100%);
+  }
+  .home-v3 .home-copy{
+    left:auto;
+    right:20px;
+    top:13.5%;
+    width:min(82vw,365px);
+    transform:none;
+    padding:0;
+    text-align:right;
+    text-shadow:0 2px 10px rgba(0,0,0,.5);
+  }
+  .home-v3 .home-kicker{font-size:7.5px;margin-bottom:8px}
+  .home-v3 .home-copy h1{margin-left:auto;max-width:100%;font-size:clamp(29px,8vw,36px);line-height:1.02}
+  .home-v3 .home-lead{margin:10px 0 0 auto;max-width:330px;font-size:13.5px;line-height:1.28;color:rgba(255,255,255,.80)}
+  .home-v3 .home-note{display:none}
+  .home-v3 .apple{width:104px;--fruit-size:44px}
+  .home-v3 .apple-services{left:25%;top:43%;--fruit-size:48px}
+  .home-v3 .apple-atmosphere{left:58%;top:36%;--fruit-size:43px}
+  .home-v3 .apple-case{left:76%;top:49%;--fruit-size:49px}
+  .home-v3 .apple-contact{left:43%;top:61%;--fruit-size:46px}
+  .home-v3 .apple-label{font-size:10px;gap:4px;margin-top:2px}
+  .home-v3 .apple-label b{font-size:7.5px}
+}
+@media(max-height:700px) and (max-width:680px){
+  .home-v3 .home-copy{top:12.5%}
+  .home-v3 .home-copy h1{font-size:29px}
+  .home-v3 .home-lead{font-size:12.5px}
+  .home-v3 .apple-services{top:44%}
+  .home-v3 .apple-atmosphere{top:37%}
+  .home-v3 .apple-case{top:51%}
+  .home-v3 .apple-contact{top:63%}
+}
