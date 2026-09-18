@@ -232,3 +232,151 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
   .home-v3 .apple-case{top:51%}
   .home-v3 .apple-contact{top:63%}
 }
+
+
+/* 2026-09-18 — screenshot alignment v10 */
+/* Keep the editorial copy in its own clean right-hand column. */
+.home-v3 .home-copy{
+  left:auto;
+  right:4.7vw;
+  top:17.2%;
+  width:min(430px,30vw);
+  transform:none;
+  padding:0;
+  text-align:left;
+  text-shadow:0 2px 10px rgba(0,0,0,.38);
+}
+.home-v3 .home-kicker{
+  margin-bottom:12px;
+  font-size:9px;
+  letter-spacing:.20em;
+  color:rgba(216,180,118,.86);
+}
+.home-v3 .home-copy h1{
+  max-width:430px;
+  font-size:clamp(35px,3vw,49px);
+  line-height:1.03;
+  letter-spacing:-.035em;
+  color:rgba(255,255,255,.96);
+}
+.home-v3 .home-copy h1 em{
+  margin-top:0;
+  font-size:1em;
+  color:rgba(216,180,118,.9);
+}
+.home-v3 .home-lead{
+  max-width:390px;
+  margin-top:15px;
+  font-size:16px;
+  line-height:1.35;
+  color:rgba(255,255,255,.80);
+}
+.home-v3 .home-note{
+  margin-top:18px;
+  font-size:9px;
+  letter-spacing:.15em;
+  color:rgba(255,255,255,.62);
+}
+.home-v3 .home-note::before{width:30px}
+
+/* Navigation fruit lives only inside the tree crown, never over the copy. */
+.home-v3 .apple{
+  width:112px;
+  --fruit-size:50px;
+}
+.home-v3 .apple-services{
+  left:21.5%; top:29%;
+  --fruit-size:52px; --hang-angle:-1.2deg; --swing:2.2deg; --lift:-2.5px; --stem-angle:-10deg; --duration:7.8s;
+}
+.home-v3 .apple-atmosphere{
+  left:39.5%; top:18.8%;
+  --fruit-size:48px; --hang-angle:1deg; --swing:1.9deg; --lift:-2px; --stem-angle:8deg; --duration:8.6s;
+}
+.home-v3 .apple-case{
+  left:31.8%; top:41%;
+  --fruit-size:54px; --hang-angle:-.7deg; --swing:2.1deg; --lift:-2.8px; --stem-angle:-6deg; --duration:8.1s;
+}
+.home-v3 .apple-contact{
+  left:47%; top:29.5%;
+  --fruit-size:50px; --hang-angle:.9deg; --swing:2deg; --lift:-2.3px; --stem-angle:9deg; --duration:8.9s;
+}
+.home-v3 .apple-label{
+  min-width:0;
+  margin-top:2px;
+  padding:0;
+  gap:5px;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  backdrop-filter:none!important;
+  box-shadow:none!important;
+  font:10px/1.08 Cormorant,Georgia,serif;
+  letter-spacing:.07em;
+  color:rgba(255,255,255,.78);
+  text-shadow:0 1px 5px rgba(0,0,0,.72);
+}
+.home-v3 .apple-label b{
+  font:7.5px/1 Arial,sans-serif;
+  letter-spacing:.04em;
+  color:rgba(216,180,118,.78);
+}
+.home-v3 .apple-label strong{font-weight:500}
+.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{
+  color:#fff;
+  text-shadow:0 1px 6px rgba(0,0,0,.78);
+}
+.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{
+  animation:apple-v3-invite .95s cubic-bezier(.4,0,.2,1) infinite alternate;
+}
+
+/* Moderate desktop: preserve a clear gap between crown navigation and copy. */
+@media(max-width:1200px) and (min-width:681px){
+  .home-v3 .home-copy{right:4vw;top:17%;width:min(390px,31vw)}
+  .home-v3 .home-copy h1{font-size:clamp(32px,3.35vw,43px)}
+  .home-v3 .home-lead{font-size:14.5px}
+  .home-v3 .apple{width:104px;--fruit-size:46px}
+  .home-v3 .apple-services{left:20%;top:30%;--fruit-size:48px}
+  .home-v3 .apple-atmosphere{left:38%;top:20%;--fruit-size:44px}
+  .home-v3 .apple-case{left:30%;top:42%;--fruit-size:50px}
+  .home-v3 .apple-contact{left:46%;top:31%;--fruit-size:46px}
+}
+
+/* Mobile: copy stays high; apples begin below it and remain separated. */
+@media(max-width:680px){
+  .home-v3 .home-copy{
+    left:auto;
+    right:18px;
+    top:12.5%;
+    width:min(78vw,330px);
+    text-align:right;
+  }
+  .home-v3 .home-kicker{font-size:7px;margin-bottom:7px}
+  .home-v3 .home-copy h1{
+    margin-left:auto;
+    max-width:330px;
+    font-size:clamp(27px,7.7vw,34px);
+    line-height:1.02;
+  }
+  .home-v3 .home-lead{
+    margin:9px 0 0 auto;
+    max-width:300px;
+    font-size:12.5px;
+    line-height:1.26;
+  }
+  .home-v3 .apple{width:94px;--fruit-size:42px}
+  .home-v3 .apple-services{left:23%;top:48%;--fruit-size:44px}
+  .home-v3 .apple-atmosphere{left:56%;top:40%;--fruit-size:40px}
+  .home-v3 .apple-case{left:38%;top:59%;--fruit-size:46px}
+  .home-v3 .apple-contact{left:72%;top:52%;--fruit-size:43px}
+  .home-v3 .apple-label{font-size:9px;gap:3px}
+  .home-v3 .apple-label b{font-size:7px}
+}
+@media(max-height:700px) and (max-width:680px){
+  .home-v3 .home-copy{top:11.5%}
+  .home-v3 .home-copy h1{font-size:27px}
+  .home-v3 .home-lead{font-size:11.5px}
+  .home-v3 .apple-services{top:49%}
+  .home-v3 .apple-atmosphere{top:41%}
+  .home-v3 .apple-case{top:60%}
+  .home-v3 .apple-contact{top:53%}
+}
