@@ -64,7 +64,11 @@
     busy = false;
     activeAnimations.forEach(animation => animation.cancel());
     activeAnimations = [];
-    document.querySelectorAll('.apple').forEach(apple => apple.removeAttribute('aria-disabled'));
+    document.querySelectorAll('.falling-apple,.landing-ring').forEach(element => element.remove());
+    document.querySelectorAll('.apple').forEach(apple => {
+      apple.classList.remove('picking');
+      apple.removeAttribute('aria-disabled');
+    });
     overlay.classList.remove('active');
     overlay.style.clipPath = '';
     document.body.removeAttribute('aria-busy');
@@ -90,33 +94,74 @@
     status.textContent = 'Открываем: ' + link.dataset.name;
 
     const swing = link.querySelector('.apple-swing');
-    const rect = swing.getBoundingClientRect();
+    const image = swing.querySelector('img');
+    const rect = image.getBoundingClientRect();
     const cx = rect.left + rect.width / 2;
     const cy = rect.top + rect.height / 2;
     const others = [...document.querySelectorAll('.apple')].filter(apple => apple !== link);
+    const landingTop = innerHeight - 72 - rect.height;
+    const drop = Math.max(100, landingTop - rect.top);
+    const drift = link.classList.contains('apple-atmosphere') || link.classList.contains('apple-contact') ? 18 : -12;
+    const clone = document.createElement('img');
+    clone.src = image.src;
+    clone.alt = '';
+    clone.className = 'falling-apple';
+    Object.assign(clone.style, {
+      left: rect.left + 'px',
+      top: rect.top + 'px',
+      width: rect.width + 'px',
+      height: rect.height + 'px'
+    });
+    document.body.append(clone);
+    link.classList.add('picking');
     note(392, .24, .025);
 
     try {
       await Promise.all([
-        animate(swing, [
-          { transform: 'translate3d(0,0,0) scale(1)' },
-          { transform: 'translate3d(0,-5px,0) scale(1.08)', offset: .55 },
-          { transform: 'translate3d(0,-2px,0) scale(1.03)' }
-        ], { duration: 360, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }),
+        animate(clone, [
+          { transform: 'translate3d(0,0,0) rotate(0deg) scale(1)' },
+          { transform: 'translate3d(0,-6px,0) rotate(-3deg) scale(1.04)' },
+          { transform: 'translate3d(0,-3px,0) rotate(-2deg) scale(1.02)' }
+        ], { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }),
         ...others.map(apple => animate(apple, [
-          { opacity: 1, transform: 'translate3d(0,0,0)' },
-          { opacity: .28, transform: 'translate3d(0,4px,0)' }
-        ], { duration: 320, easing: 'ease-out', fill: 'forwards' }))
+          { opacity: 1 },
+          { opacity: .42 }
+        ], { duration: 360, easing: 'ease-out', fill: 'forwards' }))
       ]);
 
-      overlay.style.setProperty('--cx', cx + 'px');
-      overlay.style.setProperty('--cy', cy + 'px');
+      await animate(clone, [
+        { transform: 'translate3d(0,-3px,0) rotate(-2deg) scale(1.02)' },
+        { transform: `translate3d(${drift * .18}px,${drop * .18}px,0) rotate(5deg) scale(1.01)`, offset: .35 },
+        { transform: `translate3d(${drift}px,${drop}px,0) rotate(22deg) scale(1)` }
+      ], { duration: 720, easing: 'cubic-bezier(.36,.08,.72,.42)', fill: 'forwards' });
+
+      const landingX = cx + drift;
+      const landingY = rect.top + drop + rect.height;
+      const ring = document.createElement('span');
+      ring.className = 'landing-ring';
+      Object.assign(ring.style, { left: (landingX - 28) + 'px', top: (landingY - 5) + 'px', width: '56px', height: '12px' });
+      document.body.append(ring);
+      note(118, .2, .035);
+      await Promise.all([
+        animate(clone, [
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(22deg) scale(1,1)` },
+          { transform: `translate3d(${drift}px,${drop + 3}px,0) rotate(22deg) scale(1.08,.9)`, offset: .38 },
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(22deg) scale(1,1)` }
+        ], { duration: 260, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' }),
+        animate(ring, [
+          { transform: 'scale(.45)', opacity: .55 },
+          { transform: 'scale(2.1)', opacity: 0 }
+        ], { duration: 480, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' })
+      ]);
+
+      overlay.style.setProperty('--cx', landingX + 'px');
+      overlay.style.setProperty('--cy', landingY + 'px');
       overlay.querySelector('.transition-name').textContent = link.dataset.name;
       overlay.classList.add('active');
       await animate(overlay, [
-        { clipPath: `circle(0 at ${cx}px ${cy}px)` },
-        { clipPath: `circle(${Math.hypot(innerWidth, innerHeight)}px at ${cx}px ${cy}px)` }
-      ], { duration: 720, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' });
+        { clipPath: `circle(0 at ${landingX}px ${landingY}px)` },
+        { clipPath: `circle(${Math.hypot(innerWidth, innerHeight)}px at ${landingX}px ${landingY}px)` }
+      ], { duration: 680, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' });
       location.assign(destination);
     } catch {
       location.assign(destination);
