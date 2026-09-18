@@ -28,6 +28,72 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 .home-v3 .home-note{display:flex;align-items:center;gap:13px;margin:28px 0 0;font:10px/1.4 Arial,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.78)}
 .home-v3 .home-note::before{content:"";width:42px;height:1px;background:var(--gold)}
 
+.home-v3 .fruit-navigation{position:absolute;inset:0;z-index:7;width:auto;display:block;transform:none}
+.home-v3 .apple{--fruit-size:50px;position:absolute;width:132px;height:auto;display:flex;flex-direction:column;align-items:center;padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none;transform:translate(-50%,-50%);z-index:9;text-align:center;transition:filter .35s ease,opacity .35s ease}
+.home-v3 .apple-services{left:34%;top:20%}.home-v3 .apple-atmosphere{left:44%;top:28%}.home-v3 .apple-case{left:42%;top:40%}.home-v3 .apple-contact{left:36%;top:50%}
+.home-v3 .apple-swing{position:relative;display:block;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% -14px;animation:apple-v3-hang 6.8s cubic-bezier(.45,0,.55,1) infinite;filter:saturate(1.02) brightness(1.03) drop-shadow(0 8px 8px rgba(0,0,0,.42));will-change:transform}
+.home-v3 .apple-swing::before{content:"";position:absolute;left:50%;top:-15px;width:1px;height:18px;background:linear-gradient(#49331f,#765035);transform:translateX(-50%);border-radius:999px}
+.home-v3 .apple:nth-child(2) .apple-swing{animation-delay:-1.8s}.home-v3 .apple:nth-child(3) .apple-swing{animation-delay:-3.6s}.home-v3 .apple:nth-child(4) .apple-swing{animation-delay:-5.4s}
+.home-v3 .apple-swing img{width:100%;height:100%;object-fit:contain;display:block}
+.home-v3 .apple-label{display:flex;align-items:center;justify-content:center;gap:7px;min-width:118px;margin-top:5px;padding:7px 10px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(7,13,10,.55);backdrop-filter:blur(8px);box-shadow:0 8px 20px rgba(0,0,0,.2);font:9px/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;white-space:nowrap}
+.home-v3 .apple-label b{font-weight:400;color:var(--gold)}.home-v3 .apple-label strong{font-weight:600}
+.home-v3 .apple-caption{display:none!important}
+.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{animation-play-state:paused;filter:saturate(1.08) brightness(1.08) drop-shadow(0 10px 10px rgba(0,0,0,.48))}
+.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{background:rgba(7,13,10,.72);border-color:rgba(255,255,255,.52)}
+.home-v3 .apple.picking .apple-swing{visibility:hidden}.home-v3 .apple.picking .apple-label{opacity:.28}
+.home-v3 .falling-apple{position:fixed;z-index:35;pointer-events:none;object-fit:contain;filter:saturate(1.04) drop-shadow(0 12px 10px rgba(0,0,0,.46));will-change:transform}
+.home-v3 .landing-ring{position:fixed;z-index:34;border:1px solid rgba(216,180,118,.56);border-radius:50%;pointer-events:none}
+
+.home-v3 .garden-footer{position:fixed;left:4.2vw;right:4.2vw;bottom:0;height:58px;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-top:1px solid var(--line);background:transparent;color:rgba(255,255,255,.68);font:10px/1 Arial,sans-serif;letter-spacing:.05em}
+.home-v3 .garden-controls{display:flex;gap:22px;justify-self:center}.home-v3 .garden-controls button,.home-v3 .credits-link{border:0;background:none;color:rgba(255,255,255,.7);font:10px/1 Arial,sans-serif;cursor:pointer}.home-v3 .credits-link{justify-self:end}.home-v3 .garden-controls button:hover,.home-v3 .credits-link:hover{color:#fff}
+.home-v3 .page-transition{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#0b110f;color:#fff;pointer-events:none;visibility:hidden}.home-v3 .page-transition.active{visibility:visible}.home-v3 .transition-word{font:72px/1 Prata,Georgia,serif}.home-v3 .transition-name{margin-top:12px;font:18px/1.3 Prata,Georgia,serif}
+@keyframes apple-v3-hang{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+
+@media(max-width:900px){.home-v3 .home-copy{width:min(410px,38vw);left:4vw}.home-v3 .home-copy h1{font-size:clamp(38px,5vw,58px)}.home-v3 .apple{--fruit-size:46px;width:122px}.home-v3 .apple-label{font-size:8px;min-width:108px}}
+@media(max-width:680px){
+ .home-v3 .tree{object-position:center center;filter:none}
+ .home-v3 .orchard::after{background:linear-gradient(90deg,rgba(5,10,8,.46) 0%,rgba(5,10,8,.20) 56%,rgba(5,10,8,.04) 100%),linear-gradient(180deg,rgba(5,10,8,.24) 0%,rgba(5,10,8,.06) 38%,rgba(5,10,8,.03) 68%,rgba(5,10,8,.28) 100%)}
+ .home-v3 .garden-header{left:20px;right:20px;height:66px;grid-template-columns:auto 1fr}.home-v3 .garden-header>p{display:none}.home-v3 .garden-logo{font-size:21px}.home-v3 .direct-contact{justify-self:end;font-size:9px;padding:10px 12px}
+ .home-v3 .home-copy{left:22px;right:22px;top:92px;width:auto;transform:none;padding:0;text-shadow:0 2px 14px rgba(0,0,0,.72)}
+ .home-v3 .home-kicker{font-size:8px;margin-bottom:10px}.home-v3 .home-copy h1{font-size:clamp(32px,8.8vw,39px);max-width:60vw}.home-v3 .home-lead{font-size:14px;line-height:1.28;margin-top:12px;max-width:59vw}.home-v3 .home-note{display:none}
+ .home-v3 .fruit-navigation{inset:0;width:auto;display:block;transform:none}
+ .home-v3 .apple{--fruit-size:36px;width:104px}.home-v3 .apple-label{min-width:98px;padding:6px 7px;font-size:7.5px;gap:5px}
+ .home-v3 .apple-services{left:76%;top:23%}.home-v3 .apple-atmosphere{left:82%;top:34%}.home-v3 .apple-case{left:73%;top:45%}.home-v3 .apple-contact{left:81%;top:56%}
+ .home-v3 .garden-footer{left:20px;right:20px;height:52px;grid-template-columns:1fr auto}.home-v3 .garden-controls{display:none}.home-v3 .garden-footer>span,.home-v3 .credits-link{font-size:9px}
+}
+@media(max-height:700px) and (max-width:680px){.home-v3 .home-copy h1{font-size:31px}.home-v3 .home-lead{font-size:13px}.home-v3 .apple{--fruit-size:32px}.home-v3 .apple-services{top:22%}.home-v3 .apple-atmosphere{top:33%}.home-v3 .apple-case{top:44%}.home-v3 .apple-contact{top:55%}}
+.home-v3.motion-paused .apple-swing,.home-v3.document-hidden .apple-swing{animation-play-state:paused!important}
+@media(prefers-reduced-motion:reduce){.home-v3 .apple-swing{animation:none!important}}
+/* GIFS homepage v3 — clean hero with full-resolution background */
+@font-face{font-family:Prata;src:url('assets/fonts/prata.woff') format('woff');font-display:swap}
+@font-face{font-family:Cormorant;src:url('assets/fonts/cormorant.woff') format('woff');font-display:swap}
+:root{--cream:#f7f1e5;--gold:#d8b476;--muted:#d8d0c3;--line:rgba(255,255,255,.22)}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b110f}
+body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Georgia,serif;background:#0b110f}
+.home-v3 *{box-sizing:border-box}
+.home-v3 a{color:inherit;text-decoration:none}
+.home-v3::before,.home-v3::after{content:none!important}
+.home-v3 .garden-main{position:fixed;inset:0;display:block;overflow:hidden}
+.home-v3 .orchard{position:absolute;inset:0;width:100vw;height:100vh;max-width:none;max-height:none;margin:0;transform:none;overflow:hidden;isolation:isolate}
+.home-v3 .tree{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:none;z-index:0;image-rendering:auto}
+.home-v3 .orchard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(5,10,8,.42) 0%,rgba(5,10,8,.24) 21%,rgba(5,10,8,.08) 39%,rgba(5,10,8,0) 58%),linear-gradient(180deg,rgba(4,8,7,.08),transparent 24%,transparent 78%,rgba(4,8,7,.18))}
+.home-v3 .tree-halo,.home-v3 .sky-drift,.home-v3 .small-fruit,.home-v3 .garden-inscription,.home-v3 .scene-caption{display:none!important}
+.home-v3 .scene-light{display:none!important}
+
+.home-v3 .garden-header{position:fixed;top:0;left:4.2vw;right:4.2vw;height:86px;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid var(--line);background:transparent}
+.home-v3 .garden-logo{padding:0;font:30px/1 Prata,Georgia,serif;letter-spacing:.19em;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.home-v3 .garden-header>p{margin:0;justify-self:center;font:11px/1.4 Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,255,255,.82)}
+.home-v3 .direct-contact{font:11px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;border:1px solid rgba(255,255,255,.56);border-radius:999px;padding:14px 19px;background:rgba(7,13,10,.12);backdrop-filter:blur(5px)}
+.home-v3 .direct-contact:hover{background:rgba(255,255,255,.12)}
+
+.home-v3 .home-copy{position:absolute;left:5.4vw;top:44%;z-index:8;width:min(440px,31vw);transform:translateY(-25%);padding:30px 28px 34px 0;text-shadow:0 3px 18px rgba(0,0,0,.74)}
+.home-v3 .home-kicker{margin:0 0 18px;font:10px/1.4 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.home-v3 .home-copy h1{margin:0;font:400 clamp(42px,4.35vw,69px)/1.02 Prata,Georgia,serif;letter-spacing:-.045em;color:#fff;text-wrap:balance}
+.home-v3 .home-copy h1 em{display:block;margin-top:3px;font:italic 400 1.04em/1 Cormorant,Georgia,serif;color:var(--gold)}
+.home-v3 .home-lead{max-width:410px;margin:23px 0 0;font:19px/1.4 Cormorant,Georgia,serif;color:rgba(255,255,255,.94)}
+.home-v3 .home-note{display:flex;align-items:center;gap:13px;margin:28px 0 0;font:10px/1.4 Arial,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.78)}
+.home-v3 .home-note::before{content:"";width:42px;height:1px;background:var(--gold)}
+
 .home-v3 .fruit-navigation{position:absolute;inset:auto 5.4vw auto auto;top:50%;z-index:7;width:min(410px,36vw);display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:18px;transform:translateY(-50%)}
 .home-v3 .apple{--fruit-size:48px;position:relative;left:auto;top:auto;width:auto;min-width:0;height:68px;display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;padding:8px 12px 8px 8px;border:1px solid rgba(255,255,255,.26);border-radius:18px;background:rgba(7,13,10,.46);backdrop-filter:blur(10px);box-shadow:0 14px 34px rgba(0,0,0,.18);transform:none;z-index:9;text-align:left;transition:transform .45s cubic-bezier(.2,.8,.2,1),background-color .45s ease,border-color .45s ease,box-shadow .45s ease}
 .home-v3 .apple-swing{display:block;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% 45%;animation:apple-v3-float 7.2s cubic-bezier(.45,0,.55,1) infinite;filter:saturate(1.02) brightness(1.03) drop-shadow(0 8px 8px rgba(0,0,0,.42));will-change:transform}
