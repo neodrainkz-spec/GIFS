@@ -101,7 +101,7 @@
     const others = [...document.querySelectorAll('.apple')].filter(apple => apple !== link);
     const landingTop = innerHeight - 72 - rect.height;
     const drop = Math.max(100, landingTop - rect.top);
-    const drift = link.classList.contains('apple-atmosphere') || link.classList.contains('apple-contact') ? 18 : -12;
+    const isRightDrift = link.classList.contains('apple-atmosphere') || link.classList.contains('apple-contact');\n    const drift = isRightDrift ? Math.min(34, innerWidth * .028) : -Math.min(28, innerWidth * .024);\n    const spin = isRightDrift ? 86 : -74;
     const clone = document.createElement('img');
     clone.src = image.src;
     clone.alt = '';
@@ -119,21 +119,23 @@
     try {
       await Promise.all([
         animate(clone, [
-          { transform: 'translate3d(0,0,0) rotate(0deg) scale(1)' },
-          { transform: 'translate3d(0,-6px,0) rotate(-3deg) scale(1.04)' },
-          { transform: 'translate3d(0,-3px,0) rotate(-2deg) scale(1.02)' }
-        ], { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }),
+          { transform: 'translate3d(0,0,0) rotate(0deg) scale(1)', offset: 0 },
+          { transform: 'translate3d(-1px,-8px,0) rotate(-4deg) scale(1.035)', offset: .46 },
+          { transform: 'translate3d(1px,-4px,0) rotate(2deg) scale(1.018)', offset: 1 }
+        ], { duration: 270, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }),
         ...others.map(apple => animate(apple, [
           { opacity: 1 },
-          { opacity: .42 }
-        ], { duration: 360, easing: 'ease-out', fill: 'forwards' }))
+          { opacity: .68 }
+        ], { duration: 340, easing: 'ease-out', fill: 'forwards' }))
       ]);
 
       await animate(clone, [
-        { transform: 'translate3d(0,-3px,0) rotate(-2deg) scale(1.02)' },
-        { transform: `translate3d(${drift * .18}px,${drop * .18}px,0) rotate(5deg) scale(1.01)`, offset: .35 },
-        { transform: `translate3d(${drift}px,${drop}px,0) rotate(22deg) scale(1)` }
-      ], { duration: 720, easing: 'cubic-bezier(.36,.08,.72,.42)', fill: 'forwards' });
+        { transform: 'translate3d(1px,-4px,0) rotate(2deg) scale(1.018)', offset: 0 },
+        { transform: `translate3d(${drift * .10}px,${drop * .06}px,0) rotate(${spin * .08}deg) scale(1.012)`, offset: .16 },
+        { transform: `translate3d(${drift * .36}px,${drop * .31}px,0) rotate(${spin * .34}deg) scale(1.006)`, offset: .47 },
+        { transform: `translate3d(${drift * .74}px,${drop * .68}px,0) rotate(${spin * .72}deg) scale(1.002)`, offset: .76 },
+        { transform: `translate3d(${drift}px,${drop}px,0) rotate(${spin}deg) scale(1)`, offset: 1 }
+      ], { duration: 860, easing: 'cubic-bezier(.28,.03,.78,.42)', fill: 'forwards' });
 
       const landingX = cx + drift;
       const landingY = rect.top + drop + rect.height;
@@ -144,10 +146,11 @@
       note(118, .2, .035);
       await Promise.all([
         animate(clone, [
-          { transform: `translate3d(${drift}px,${drop}px,0) rotate(22deg) scale(1,1)` },
-          { transform: `translate3d(${drift}px,${drop + 3}px,0) rotate(22deg) scale(1.08,.9)`, offset: .38 },
-          { transform: `translate3d(${drift}px,${drop}px,0) rotate(22deg) scale(1,1)` }
-        ], { duration: 260, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' }),
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${spin}deg) scale(1,1)` },
+          { transform: `translate3d(${drift + 1}px,${drop + 5}px,0) rotate(${spin + (isRightDrift ? 5 : -5)}deg) scale(1.075,.91)`, offset: .34 },
+          { transform: `translate3d(${drift - 1}px,${drop - 2}px,0) rotate(${spin - (isRightDrift ? 2 : -2)}deg) scale(.995,1.02)`, offset: .68 },
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${spin}deg) scale(1,1)` }
+        ], { duration: 330, easing: 'cubic-bezier(.2,.78,.25,1)', fill: 'forwards' }),
         animate(ring, [
           { transform: 'scale(.45)', opacity: .55 },
           { transform: 'scale(2.1)', opacity: 0 }
