@@ -101,7 +101,9 @@
     const others = [...document.querySelectorAll('.apple')].filter(apple => apple !== link);
     const landingTop = innerHeight - 72 - rect.height;
     const drop = Math.max(100, landingTop - rect.top);
-    const isRightDrift = link.classList.contains('apple-atmosphere') || link.classList.contains('apple-contact');\n    const drift = isRightDrift ? Math.min(34, innerWidth * .028) : -Math.min(28, innerWidth * .024);\n    const spin = isRightDrift ? 86 : -74;
+    const isRightDrift = link.classList.contains('apple-atmosphere') || link.classList.contains('apple-contact');
+    const drift = isRightDrift ? Math.min(34, innerWidth * .028) : -Math.min(28, innerWidth * .024);
+    const spin = isRightDrift ? 86 : -74;
     const clone = document.createElement('img');
     clone.src = image.src;
     clone.alt = '';
