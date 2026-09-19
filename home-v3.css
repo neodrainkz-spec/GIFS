@@ -1,6 +1,7 @@
 /* GIFS orchard hero. One cascade; image-relative fruit placement is enhanced by orchard.js. */
 @font-face{font-family:Prata;src:url('assets/fonts/prata.woff') format('woff');font-display:swap}
 @font-face{font-family:Cormorant;src:url('assets/fonts/cormorant.woff') format('woff');font-display:swap}
+@font-face{font-family:Ballet;src:url('assets/fonts/ballet.woff') format('woff');font-display:swap}
 :root{--cream:#f7f1e5;--gold:#d8b476;--muted:#d8d0c3;--line:rgba(255,255,255,.22)}
 html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#0b110f}
 body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Georgia,serif;background:#0b110f}
@@ -17,7 +18,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 /* The header line is decorative: only actual header links intercept pointer input. */
 .home-v3 .garden-header{position:fixed;top:0;left:4.2vw;right:4.2vw;height:86px;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid var(--line);background:transparent;pointer-events:none}
 .home-v3 .garden-header a{pointer-events:auto}
-.home-v3 .garden-logo{padding:0;font:30px/1 Prata,Georgia,serif;letter-spacing:.19em;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.home-v3 .garden-logo{padding:0 .38em .05em .14em;font:3.5rem/1.45 Ballet,Cormorant,serif;letter-spacing:.09em;font-feature-settings:"kern" 1,"liga" 1;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5);white-space:nowrap}
 .home-v3 .garden-header>p{margin:0;justify-self:center;font:11px/1.4 Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,255,255,.82)}
 .home-v3 .direct-contact{font:11px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;border:1px solid rgba(255,255,255,.56);border-radius:999px;padding:14px 19px;background:rgba(7,13,10,.12);backdrop-filter:blur(5px)}
 .home-v3 .direct-contact:hover{background:rgba(255,255,255,.12)}
@@ -34,10 +35,10 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 /* No viewport-percent adjustments per device: JS projects fruit onto the pictured branches. */
 .home-v3 .fruit-navigation{position:absolute;inset:0;z-index:7;width:auto;display:block;transform:none;pointer-events:none}
 .home-v3 .apple{--fruit-size:50px;--hang-angle:0deg;--swing:2deg;--lift:-2px;--stem-angle:0deg;--duration:8s;position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:112px;min-height:64px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:translate(-50%,-50%);z-index:9;text-align:center;pointer-events:auto;touch-action:manipulation;outline-offset:5px;transition:filter .35s ease,opacity .35s ease}
-.home-v3 .apple-services{left:21%;top:31%;--fruit-size:52px;--hang-angle:-1.2deg;--swing:2.2deg;--stem-angle:-10deg;--duration:7.8s}
-.home-v3 .apple-atmosphere{left:34%;top:25%;--fruit-size:48px;--hang-angle:1deg;--swing:1.9deg;--stem-angle:8deg;--duration:8.6s}
-.home-v3 .apple-case{left:30%;top:42%;--fruit-size:54px;--hang-angle:-.7deg;--swing:2.1deg;--stem-angle:-6deg;--duration:8.1s}
-.home-v3 .apple-contact{left:38.5%;top:36%;--fruit-size:50px;--hang-angle:.9deg;--swing:2deg;--stem-angle:9deg;--duration:8.9s}
+.home-v3 .apple-services{left:22%;top:28.5%;--fruit-size:52px;--hang-angle:-1.2deg;--swing:2.2deg;--stem-angle:-10deg;--duration:7.8s}
+.home-v3 .apple-atmosphere{left:36%;top:24.5%;--fruit-size:48px;--hang-angle:1deg;--swing:1.9deg;--stem-angle:8deg;--duration:8.6s}
+.home-v3 .apple-case{left:30.8%;top:40%;--fruit-size:54px;--hang-angle:-.7deg;--swing:2.1deg;--stem-angle:-6deg;--duration:8.1s}
+.home-v3 .apple-contact{left:13.7%;top:24.5%;--fruit-size:50px;--hang-angle:.9deg;--swing:2deg;--stem-angle:9deg;--duration:8.9s}
 .home-v3 .apple-swing{position:relative;display:block;flex:none;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% -10px;animation:apple-v3-hang var(--duration) cubic-bezier(.42,0,.58,1) infinite;filter:saturate(1.01) brightness(1.02) drop-shadow(0 7px 7px rgba(0,0,0,.38));will-change:transform}
 .home-v3 .apple-swing::before{content:"";position:absolute;left:50%;top:-13px;width:1.5px;height:15px;opacity:.82;background:linear-gradient(#3f2b1b,#745033);transform:translateX(-50%) rotate(var(--stem-angle));transform-origin:50% 100%;border-radius:999px}
 .home-v3 .apple-swing img{width:100%;height:100%;object-fit:contain;display:block;transform:rotate(180deg);user-select:none;pointer-events:none}
@@ -88,7 +89,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
  .home-v3 .orchard::after{background:linear-gradient(225deg,rgba(5,10,8,.34),rgba(5,10,8,.15) 28%,rgba(5,10,8,.03) 50%,transparent 68%),linear-gradient(180deg,rgba(5,10,8,.20),rgba(5,10,8,.04) 46%,rgba(5,10,8,.20))}
  .home-v3 .garden-header{left:20px;right:20px;height:66px;grid-template-columns:auto 1fr}
  .home-v3 .garden-header>p{display:none}
- .home-v3 .garden-logo{font-size:21px}
+ .home-v3 .garden-logo{font-size:2.5rem;letter-spacing:.075em}
  .home-v3 .direct-contact{justify-self:end;font-size:9px;padding:10px 12px}
  .home-v3 .home-copy{left:auto;right:18px;top:12.5%;width:min(78vw,330px);text-align:right}
  .home-v3 .home-kicker{font-size:7px;margin-bottom:7px}
@@ -98,7 +99,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
  .home-v3 .apple{width:94px;min-height:60px;--fruit-size:42px}
  .home-v3 .apple-services{left:23%;top:48%;--fruit-size:44px}
  .home-v3 .apple-atmosphere{left:56%;top:40%;--fruit-size:40px}
- .home-v3 .apple-case{left:38%;top:59%;--fruit-size:46px}
+ .home-v3 .apple-case{left:33%;top:59%;--fruit-size:46px}
  .home-v3 .apple-contact{left:65%;top:52%;--fruit-size:43px}
  .home-v3 .apple-label{font-size:10px;gap:3px}
  .home-v3 .apple-label b{font-size:7.5px}
@@ -113,3 +114,17 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
  .home-v3 .apple{--fruit-size:40px}
 }
 @media(prefers-reduced-motion:reduce){.home-v3 .apple-swing{animation:none!important}.home-v3 .apple,.home-v3 .falling-apple{transition:none!important}}
+
+/* Short landscape viewports should keep the crown visible below the masthead. */
+@media(max-height:650px) and (min-width:681px){
+ .home-v3 .tree{object-position:center top}
+ .home-v3 .apple{--fruit-size:clamp(38px,4.2vw,48px)}
+}
+@media(max-height:650px) and (min-width:681px) and (max-width:1200px){
+ .home-v3 .tree{object-position:left top}
+}
+/* The narrowest phones need smaller links, not arbitrary viewport offsets. */
+@media(max-width:380px){
+ .home-v3 .apple{width:74px;--fruit-size:38px}
+ .home-v3 .apple-label{font-size:8px}
+}
