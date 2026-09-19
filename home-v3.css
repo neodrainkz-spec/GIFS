@@ -1,4 +1,4 @@
-/* GIFS homepage v3 — clean hero with full-resolution background */
+/* GIFS orchard hero. One cascade; image-relative fruit placement is enhanced by orchard.js. */
 @font-face{font-family:Prata;src:url('assets/fonts/prata.woff') format('woff');font-display:swap}
 @font-face{font-family:Cormorant;src:url('assets/fonts/cormorant.woff') format('woff');font-display:swap}
 :root{--cream:#f7f1e5;--gold:#d8b476;--muted:#d8d0c3;--line:rgba(255,255,255,.22)}
@@ -8,375 +8,108 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 .home-v3 a{color:inherit;text-decoration:none}
 .home-v3::before,.home-v3::after{content:none!important}
 .home-v3 .garden-main{position:fixed;inset:0;display:block;overflow:hidden}
-.home-v3 .orchard{position:absolute;inset:0;width:100vw;height:100vh;max-width:none;max-height:none;margin:0;transform:none;overflow:hidden;isolation:isolate}
-.home-v3 .tree{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:none;z-index:0;image-rendering:auto}
-.home-v3 .orchard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(5,10,8,.42) 0%,rgba(5,10,8,.24) 21%,rgba(5,10,8,.08) 39%,rgba(5,10,8,0) 58%),linear-gradient(180deg,rgba(4,8,7,.08),transparent 24%,transparent 78%,rgba(4,8,7,.18))}
-.home-v3 .tree-halo,.home-v3 .sky-drift,.home-v3 .small-fruit,.home-v3 .garden-inscription,.home-v3 .scene-caption{display:none!important}
-.home-v3 .scene-light{display:none!important}
+.home-v3 .orchard{position:absolute;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;transform:none;overflow:hidden;isolation:isolate}
+.home-v3 .orchard picture{display:block;position:absolute;inset:0;pointer-events:none}
+.home-v3 .tree{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;filter:none;z-index:0;image-rendering:auto;pointer-events:none}
+.home-v3 .orchard::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(270deg,rgba(5,10,8,.34) 0%,rgba(5,10,8,.16) 23%,rgba(5,10,8,.04) 42%,transparent 62%),linear-gradient(180deg,rgba(4,8,7,.10),transparent 26%,transparent 76%,rgba(4,8,7,.16))}
+.home-v3 .tree-halo,.home-v3 .sky-drift,.home-v3 .small-fruit,.home-v3 .garden-inscription,.home-v3 .scene-caption,.home-v3 .scene-light{display:none!important}
 
-.home-v3 .garden-header{position:fixed;top:0;left:4.2vw;right:4.2vw;height:86px;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid var(--line);background:transparent}
+/* The header line is decorative: only actual header links intercept pointer input. */
+.home-v3 .garden-header{position:fixed;top:0;left:4.2vw;right:4.2vw;height:86px;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid var(--line);background:transparent;pointer-events:none}
+.home-v3 .garden-header a{pointer-events:auto}
 .home-v3 .garden-logo{padding:0;font:30px/1 Prata,Georgia,serif;letter-spacing:.19em;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5)}
 .home-v3 .garden-header>p{margin:0;justify-self:center;font:11px/1.4 Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,255,255,.82)}
 .home-v3 .direct-contact{font:11px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;border:1px solid rgba(255,255,255,.56);border-radius:999px;padding:14px 19px;background:rgba(7,13,10,.12);backdrop-filter:blur(5px)}
 .home-v3 .direct-contact:hover{background:rgba(255,255,255,.12)}
 
-.home-v3 .home-copy{position:absolute;left:5.4vw;top:55%;z-index:8;width:min(440px,31vw);transform:translateY(-25%);padding:30px 28px 34px 0;text-shadow:0 3px 18px rgba(0,0,0,.74)}
-.home-v3 .home-kicker{margin:0 0 18px;font:10px/1.4 Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
-.home-v3 .home-copy h1{margin:0;font:400 clamp(42px,4.35vw,69px)/1.02 Prata,Georgia,serif;letter-spacing:-.045em;color:#fff;text-wrap:balance}
-.home-v3 .home-copy h1 em{display:block;margin-top:3px;font:italic 400 1.04em/1 Cormorant,Georgia,serif;color:var(--gold)}
-.home-v3 .home-lead{max-width:410px;margin:23px 0 0;font:19px/1.4 Cormorant,Georgia,serif;color:rgba(255,255,255,.94)}
-.home-v3 .home-note{display:flex;align-items:center;gap:13px;margin:28px 0 0;font:10px/1.4 Arial,sans-serif;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.78)}
-.home-v3 .home-note::before{content:"";width:42px;height:1px;background:var(--gold)}
+/* Right-hand editorial copy stays separate from the tree navigation. */
+.home-v3 .home-copy{position:absolute;left:auto;right:4.7vw;top:17.2%;z-index:8;width:min(430px,30vw);transform:none;padding:0;text-align:left;text-shadow:0 2px 10px rgba(0,0,0,.38);pointer-events:none}
+.home-v3 .home-kicker{margin:0 0 12px;font:9px/1.4 Arial,sans-serif;letter-spacing:.20em;text-transform:uppercase;color:rgba(216,180,118,.86)}
+.home-v3 .home-copy h1{margin:0;max-width:430px;font:400 clamp(35px,3vw,49px)/1.03 Prata,Georgia,serif;letter-spacing:-.035em;color:rgba(255,255,255,.96);text-wrap:balance}
+.home-v3 .home-copy h1 em{display:block;margin-top:0;font:italic 400 1em/1 Cormorant,Georgia,serif;color:rgba(216,180,118,.9)}
+.home-v3 .home-lead{max-width:390px;margin:15px 0 0;font:16px/1.35 Cormorant,Georgia,serif;color:rgba(255,255,255,.80)}
+.home-v3 .home-note{display:flex;align-items:center;gap:13px;margin:18px 0 0;font:9px/1.4 Arial,sans-serif;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.home-v3 .home-note::before{content:"";width:30px;height:1px;background:var(--gold);opacity:.72}
 
-.home-v3 .fruit-navigation{position:absolute;inset:0;z-index:7;width:auto;display:block;transform:none}
-.home-v3 .apple{--fruit-size:50px;position:absolute;width:132px;height:auto;display:flex;flex-direction:column;align-items:center;padding:0;border:0;border-radius:0;background:transparent;backdrop-filter:none;box-shadow:none;transform:translate(-50%,-50%);z-index:9;text-align:center;transition:filter .35s ease,opacity .35s ease}
-.home-v3 .apple-services{left:31%;top:15%}.home-v3 .apple-atmosphere{left:38%;top:22%}.home-v3 .apple-case{left:35%;top:29%}.home-v3 .apple-contact{left:29%;top:36%}
-.home-v3 .apple-swing{position:relative;display:block;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% -14px;animation:apple-v3-hang 6.8s cubic-bezier(.45,0,.55,1) infinite;filter:saturate(1.02) brightness(1.03) drop-shadow(0 8px 8px rgba(0,0,0,.42));will-change:transform}
-.home-v3 .apple-swing::before{content:"";position:absolute;left:50%;top:-15px;width:1px;height:18px;background:linear-gradient(#49331f,#765035);transform:translateX(-50%);border-radius:999px}
-.home-v3 .apple:nth-child(2) .apple-swing{animation-delay:-1.8s}.home-v3 .apple:nth-child(3) .apple-swing{animation-delay:-3.6s}.home-v3 .apple:nth-child(4) .apple-swing{animation-delay:-5.4s}
-.home-v3 .apple-swing img{width:100%;height:100%;object-fit:contain;display:block}
-.home-v3 .apple-label{display:flex;align-items:center;justify-content:center;gap:7px;min-width:118px;margin-top:5px;padding:7px 10px;border:1px solid rgba(255,255,255,.32);border-radius:999px;background:rgba(7,13,10,.55);backdrop-filter:blur(8px);box-shadow:0 8px 20px rgba(0,0,0,.2);font:9px/1 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#fff;white-space:nowrap}
-.home-v3 .apple-label b{font-weight:400;color:var(--gold)}.home-v3 .apple-label strong{font-weight:600}
-.home-v3 .apple-caption{display:none!important}
-.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{animation-play-state:paused;filter:saturate(1.08) brightness(1.08) drop-shadow(0 10px 10px rgba(0,0,0,.48))}
-.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{background:rgba(7,13,10,.72);border-color:rgba(255,255,255,.52)}
-.home-v3 .apple.picking .apple-swing{visibility:hidden}.home-v3 .apple.picking .apple-label{opacity:.28}
-.home-v3 .falling-apple{position:fixed;z-index:35;pointer-events:none;object-fit:contain;filter:saturate(1.04) drop-shadow(0 12px 10px rgba(0,0,0,.46));will-change:transform}
-.home-v3 .landing-ring{position:fixed;z-index:34;border:1px solid rgba(216,180,118,.56);border-radius:50%;pointer-events:none}
-
-.home-v3 .garden-footer{position:fixed;left:4.2vw;right:4.2vw;bottom:0;height:58px;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-top:1px solid var(--line);background:transparent;color:rgba(255,255,255,.68);font:10px/1 Arial,sans-serif;letter-spacing:.05em}
-.home-v3 .garden-controls{display:flex;gap:22px;justify-self:center}.home-v3 .garden-controls button,.home-v3 .credits-link{border:0;background:none;color:rgba(255,255,255,.7);font:10px/1 Arial,sans-serif;cursor:pointer}.home-v3 .credits-link{justify-self:end}.home-v3 .garden-controls button:hover,.home-v3 .credits-link:hover{color:#fff}
-.home-v3 .page-transition{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#0b110f;color:#fff;pointer-events:none;visibility:hidden}.home-v3 .page-transition.active{visibility:visible}.home-v3 .transition-word{font:72px/1 Prata,Georgia,serif}.home-v3 .transition-name{margin-top:12px;font:18px/1.3 Prata,Georgia,serif}
-@keyframes apple-v3-hang{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
-
-@media(max-width:900px){.home-v3 .home-copy{width:min(410px,38vw);left:4vw}.home-v3 .home-copy h1{font-size:clamp(38px,5vw,58px)}.home-v3 .apple{--fruit-size:46px;width:122px}.home-v3 .apple-label{font-size:8px;min-width:108px}}
-@media(max-width:680px){
- .home-v3 .tree{object-position:center center;filter:none}
- .home-v3 .orchard::after{background:linear-gradient(90deg,rgba(5,10,8,.46) 0%,rgba(5,10,8,.20) 56%,rgba(5,10,8,.04) 100%),linear-gradient(180deg,rgba(5,10,8,.24) 0%,rgba(5,10,8,.06) 38%,rgba(5,10,8,.03) 68%,rgba(5,10,8,.28) 100%)}
- .home-v3 .garden-header{left:20px;right:20px;height:66px;grid-template-columns:auto 1fr}.home-v3 .garden-header>p{display:none}.home-v3 .garden-logo{font-size:21px}.home-v3 .direct-contact{justify-self:end;font-size:9px;padding:10px 12px}
- .home-v3 .home-copy{left:22px;right:22px;top:42%;width:auto;transform:none;padding:0;text-shadow:0 2px 14px rgba(0,0,0,.72)}
- .home-v3 .home-kicker{font-size:8px;margin-bottom:10px}.home-v3 .home-copy h1{font-size:clamp(32px,8.8vw,39px);max-width:88vw}.home-v3 .home-lead{font-size:14px;line-height:1.28;margin-top:12px;max-width:88vw}.home-v3 .home-note{display:none}
- .home-v3 .fruit-navigation{inset:0;width:auto;display:block;transform:none}
- .home-v3 .apple{--fruit-size:46px;width:108px}.home-v3 .apple-label{min-width:100px;padding:6px 7px;font-size:7.5px;gap:5px}
- .home-v3 .apple-services{left:56%;top:15%}.home-v3 .apple-atmosphere{left:67%;top:22%}.home-v3 .apple-case{left:51%;top:29%}.home-v3 .apple-contact{left:36%;top:36%}
- .home-v3 .garden-footer{left:20px;right:20px;height:52px;grid-template-columns:1fr auto}.home-v3 .garden-controls{display:none}.home-v3 .garden-footer>span,.home-v3 .credits-link{font-size:9px}
-}
-@media(max-height:700px) and (max-width:680px){.home-v3 .home-copy{top:41%}.home-v3 .home-copy h1{font-size:31px}.home-v3 .home-lead{font-size:13px}.home-v3 .apple{--fruit-size:40px}}
-.home-v3.motion-paused .apple-swing,.home-v3.document-hidden .apple-swing{animation-play-state:paused!important}
-@media(prefers-reduced-motion:reduce){.home-v3 .apple-swing{animation:none!important}}
-
-
-/* 2026-09-18 — natural orchard composition */
-.home-v3 .orchard::after{
-  background:
-    linear-gradient(270deg,rgba(5,10,8,.34) 0%,rgba(5,10,8,.16) 23%,rgba(5,10,8,.04) 42%,rgba(5,10,8,0) 62%),
-    linear-gradient(180deg,rgba(4,8,7,.10),transparent 26%,transparent 76%,rgba(4,8,7,.16));
-}
-.home-v3 .home-copy{
-  left:auto;
-  right:5.2vw;
-  top:14.5%;
-  width:min(510px,36vw);
-  transform:none;
-  padding:0;
-  text-align:left;
-  text-shadow:0 2px 12px rgba(0,0,0,.46);
-}
-.home-v3 .home-kicker{margin-bottom:14px;color:rgba(216,180,118,.88)}
-.home-v3 .home-copy h1{
-  font-size:clamp(38px,3.55vw,58px);
-  line-height:1.035;
-  letter-spacing:-.038em;
-  color:rgba(255,255,255,.97);
-}
-.home-v3 .home-copy h1 em{margin-top:1px;color:#d8b476}
-.home-v3 .home-lead{
-  max-width:430px;
-  margin-top:17px;
-  font-size:17px;
-  line-height:1.38;
-  color:rgba(255,255,255,.82);
-}
-.home-v3 .home-note{margin-top:19px;color:rgba(255,255,255,.66)}
-.home-v3 .home-note::before{width:34px;opacity:.72}
-
-.home-v3 .apple{
-  --fruit-size:56px;
-  --hang-angle:0deg;
-  --swing:2.2deg;
-  --lift:-3px;
-  --stem-angle:0deg;
-  --duration:7.2s;
-  width:126px;
-  transition:opacity .35s ease,filter .35s ease;
-}
-.home-v3 .apple-services{
-  left:20.5%;top:31%;
-  --fruit-size:58px;--hang-angle:-1.4deg;--swing:2.6deg;--lift:-3.5px;--stem-angle:-12deg;--duration:7.6s;
-}
-.home-v3 .apple-atmosphere{
-  left:39%;top:20.5%;
-  --fruit-size:52px;--hang-angle:1.2deg;--swing:2deg;--lift:-2.5px;--stem-angle:9deg;--duration:8.4s;
-}
-.home-v3 .apple-case{
-  left:56%;top:34.5%;
-  --fruit-size:62px;--hang-angle:-.8deg;--swing:2.35deg;--lift:-3.2px;--stem-angle:-7deg;--duration:7.9s;
-}
-.home-v3 .apple-contact{
-  left:72%;top:49%;
-  --fruit-size:55px;--hang-angle:1deg;--swing:2.15deg;--lift:-2.9px;--stem-angle:11deg;--duration:8.8s;
-}
-.home-v3 .apple-swing{
-  transform-origin:50% -10px;
-  animation:apple-v3-hang var(--duration) cubic-bezier(.42,0,.58,1) infinite;
-  filter:saturate(1.01) brightness(1.02) drop-shadow(0 7px 7px rgba(0,0,0,.38));
-}
-.home-v3 .apple-swing::before{
-  top:-13px;
-  height:15px;
-  width:1.5px;
-  opacity:.82;
-  background:linear-gradient(#3f2b1b,#745033);
-  transform:translateX(-50%) rotate(var(--stem-angle));
-  transform-origin:50% 100%;
-}
+/* No viewport-percent adjustments per device: JS projects fruit onto the pictured branches. */
+.home-v3 .fruit-navigation{position:absolute;inset:0;z-index:7;width:auto;display:block;transform:none;pointer-events:none}
+.home-v3 .apple{--fruit-size:50px;--hang-angle:0deg;--swing:2deg;--lift:-2px;--stem-angle:0deg;--duration:8s;position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;width:112px;min-height:64px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;transform:translate(-50%,-50%);z-index:9;text-align:center;pointer-events:auto;touch-action:manipulation;outline-offset:5px;transition:filter .35s ease,opacity .35s ease}
+.home-v3 .apple-services{left:21%;top:31%;--fruit-size:52px;--hang-angle:-1.2deg;--swing:2.2deg;--stem-angle:-10deg;--duration:7.8s}
+.home-v3 .apple-atmosphere{left:34%;top:25%;--fruit-size:48px;--hang-angle:1deg;--swing:1.9deg;--stem-angle:8deg;--duration:8.6s}
+.home-v3 .apple-case{left:30%;top:42%;--fruit-size:54px;--hang-angle:-.7deg;--swing:2.1deg;--stem-angle:-6deg;--duration:8.1s}
+.home-v3 .apple-contact{left:38.5%;top:36%;--fruit-size:50px;--hang-angle:.9deg;--swing:2deg;--stem-angle:9deg;--duration:8.9s}
+.home-v3 .apple-swing{position:relative;display:block;flex:none;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% -10px;animation:apple-v3-hang var(--duration) cubic-bezier(.42,0,.58,1) infinite;filter:saturate(1.01) brightness(1.02) drop-shadow(0 7px 7px rgba(0,0,0,.38));will-change:transform}
+.home-v3 .apple-swing::before{content:"";position:absolute;left:50%;top:-13px;width:1.5px;height:15px;opacity:.82;background:linear-gradient(#3f2b1b,#745033);transform:translateX(-50%) rotate(var(--stem-angle));transform-origin:50% 100%;border-radius:999px}
+.home-v3 .apple-swing img{width:100%;height:100%;object-fit:contain;display:block;transform:rotate(180deg);user-select:none;pointer-events:none}
 .home-v3 .apple:nth-child(2) .apple-swing{animation-delay:-2.1s}
 .home-v3 .apple:nth-child(3) .apple-swing{animation-delay:-4.6s}
 .home-v3 .apple:nth-child(4) .apple-swing{animation-delay:-6.3s}
-.home-v3 .apple-label{
-  min-width:0;
-  margin-top:4px;
-  padding:2px 0;
-  gap:6px;
-  border:0;
-  border-radius:0;
-  background:transparent;
-  backdrop-filter:none;
-  box-shadow:none;
-  font:11px/1.1 Cormorant,Georgia,serif;
-  letter-spacing:.08em;
-  color:rgba(255,255,255,.84);
-  text-shadow:0 2px 7px rgba(0,0,0,.72);
-}
-.home-v3 .apple-label b{
-  font:9px/1 Arial,sans-serif;
-  letter-spacing:.06em;
-  color:rgba(216,180,118,.86);
-}
+.home-v3 .apple-label{display:flex;align-items:center;justify-content:center;gap:5px;min-width:0;margin-top:2px;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;font:11px/1.15 Cormorant,Georgia,serif;letter-spacing:.07em;text-transform:uppercase;color:rgba(255,255,255,.83);text-shadow:0 1px 6px rgba(0,0,0,.79);white-space:nowrap}
+.home-v3 .apple-label b{font:8px/1 Arial,sans-serif;letter-spacing:.04em;color:rgba(216,180,118,.92)}
 .home-v3 .apple-label strong{font-weight:500}
-.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{
-  animation:apple-v3-invite 1.05s cubic-bezier(.4,0,.2,1) infinite alternate;
-  filter:saturate(1.08) brightness(1.07) drop-shadow(0 10px 11px rgba(0,0,0,.46));
-}
-.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{
-  background:transparent;
-  border-color:transparent;
-  color:#fff;
-  text-shadow:0 2px 9px rgba(0,0,0,.82);
-}
-@keyframes apple-v3-hang{
-  0%,100%{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - var(--swing)))}
-  28%{transform:translate3d(1px,-1px,0) rotate(var(--hang-angle))}
-  58%{transform:translate3d(-1px,var(--lift),0) rotate(calc(var(--hang-angle) + var(--swing)))}
-  82%{transform:translate3d(.5px,-.7px,0) rotate(calc(var(--hang-angle) + .4deg))}
-}
-@keyframes apple-v3-invite{
-  from{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - 3deg)) scale(1.015)}
-  to{transform:translate3d(0,-5px,0) rotate(calc(var(--hang-angle) + 3deg)) scale(1.045)}
-}
+.home-v3 .apple-caption{display:none!important}
+.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{animation:apple-v3-invite .95s cubic-bezier(.4,0,.2,1) infinite alternate;filter:saturate(1.08) brightness(1.07) drop-shadow(0 10px 11px rgba(0,0,0,.46))}
+.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{color:#fff}
+.home-v3 .apple:focus-visible{outline:2px solid var(--gold);border-radius:12px}
+.home-v3 .apple.picking{pointer-events:none}
+.home-v3 .apple.picking .apple-swing{visibility:hidden}
+.home-v3 .apple.picking .apple-label{opacity:.28}
+.home-v3 .falling-apple{position:fixed;z-index:35;pointer-events:none;object-fit:contain;filter:saturate(1.04) drop-shadow(0 12px 10px rgba(0,0,0,.46));will-change:transform}
+.home-v3 .landing-ring{position:fixed;z-index:34;border:1px solid rgba(216,180,118,.56);border-radius:50%;pointer-events:none}
 
-@media(max-width:900px) and (min-width:681px){
-  .home-v3 .home-copy{right:4vw;top:14%;width:min(420px,39vw)}
-  .home-v3 .home-copy h1{font-size:clamp(34px,4.4vw,50px)}
-  .home-v3 .home-lead{font-size:15.5px}
-  .home-v3 .apple{width:116px}
-  .home-v3 .apple-services{left:18%;top:32%;--fruit-size:52px}
-  .home-v3 .apple-atmosphere{left:38%;top:22%;--fruit-size:48px}
-  .home-v3 .apple-case{left:56%;top:37%;--fruit-size:55px}
-  .home-v3 .apple-contact{left:72%;top:51%;--fruit-size:50px}
-}
-@media(max-width:680px){
-  .home-v3 .orchard::after{
-    background:
-      linear-gradient(225deg,rgba(5,10,8,.34) 0%,rgba(5,10,8,.15) 28%,rgba(5,10,8,.03) 50%,transparent 68%),
-      linear-gradient(180deg,rgba(5,10,8,.20),rgba(5,10,8,.04) 46%,rgba(5,10,8,.20) 100%);
-  }
-  .home-v3 .home-copy{
-    left:auto;
-    right:20px;
-    top:13.5%;
-    width:min(82vw,365px);
-    transform:none;
-    padding:0;
-    text-align:right;
-    text-shadow:0 2px 10px rgba(0,0,0,.5);
-  }
-  .home-v3 .home-kicker{font-size:7.5px;margin-bottom:8px}
-  .home-v3 .home-copy h1{margin-left:auto;max-width:100%;font-size:clamp(29px,8vw,36px);line-height:1.02}
-  .home-v3 .home-lead{margin:10px 0 0 auto;max-width:330px;font-size:13.5px;line-height:1.28;color:rgba(255,255,255,.80)}
-  .home-v3 .home-note{display:none}
-  .home-v3 .apple{width:104px;--fruit-size:44px}
-  .home-v3 .apple-services{left:25%;top:43%;--fruit-size:48px}
-  .home-v3 .apple-atmosphere{left:58%;top:36%;--fruit-size:43px}
-  .home-v3 .apple-case{left:76%;top:49%;--fruit-size:49px}
-  .home-v3 .apple-contact{left:43%;top:61%;--fruit-size:46px}
-  .home-v3 .apple-label{font-size:10px;gap:4px;margin-top:2px}
-  .home-v3 .apple-label b{font-size:7.5px}
-}
-@media(max-height:700px) and (max-width:680px){
-  .home-v3 .home-copy{top:12.5%}
-  .home-v3 .home-copy h1{font-size:29px}
-  .home-v3 .home-lead{font-size:12.5px}
-  .home-v3 .apple-services{top:44%}
-  .home-v3 .apple-atmosphere{top:37%}
-  .home-v3 .apple-case{top:51%}
-  .home-v3 .apple-contact{top:63%}
-}
+/* Footer is not a full-screen click-blocker. */
+.home-v3 .garden-footer{position:fixed;left:4.2vw;right:4.2vw;bottom:0;height:58px;z-index:20;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;border-top:1px solid var(--line);background:transparent;color:rgba(255,255,255,.68);font:10px/1 Arial,sans-serif;letter-spacing:.05em;pointer-events:none}
+.home-v3 .garden-footer a,.home-v3 .garden-footer button{pointer-events:auto}
+.home-v3 .garden-controls{display:flex;gap:22px;justify-self:center}
+.home-v3 .garden-controls button,.home-v3 .credits-link{border:0;background:none;color:rgba(255,255,255,.7);font:10px/1 Arial,sans-serif;cursor:pointer}
+.home-v3 .credits-link{justify-self:end}
+.home-v3 .garden-controls button:hover,.home-v3 .credits-link:hover{color:#fff}
+.home-v3 .page-transition{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#0b110f;color:#fff;pointer-events:none;visibility:hidden;clip-path:circle(0px at var(--cx,70%) var(--cy,80%))}
+.home-v3 .page-transition.active{visibility:visible}
+.home-v3 .transition-word{font:72px/1 Prata,Georgia,serif}
+.home-v3 .transition-name{margin-top:12px;font:18px/1.3 Prata,Georgia,serif}
+@keyframes apple-v3-hang{0%,100%{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - var(--swing)))}28%{transform:translate3d(1px,-1px,0) rotate(var(--hang-angle))}58%{transform:translate3d(-1px,var(--lift),0) rotate(calc(var(--hang-angle) + var(--swing)))}82%{transform:translate3d(.5px,-.7px,0) rotate(calc(var(--hang-angle) + .4deg))}}
+@keyframes apple-v3-invite{from{transform:translate3d(0,0,0) rotate(calc(var(--hang-angle) - 3deg)) scale(1.015)}to{transform:translate3d(0,-5px,0) rotate(calc(var(--hang-angle) + 3deg)) scale(1.045)}}
+.home-v3.motion-paused .apple-swing,.home-v3.document-hidden .apple-swing{animation-play-state:paused!important}
 
-
-/* 2026-09-18 — screenshot alignment v10 */
-/* Keep the editorial copy in its own clean right-hand column. */
-.home-v3 .home-copy{
-  left:auto;
-  right:4.7vw;
-  top:17.2%;
-  width:min(430px,30vw);
-  transform:none;
-  padding:0;
-  text-align:left;
-  text-shadow:0 2px 10px rgba(0,0,0,.38);
-}
-.home-v3 .home-kicker{
-  margin-bottom:12px;
-  font-size:9px;
-  letter-spacing:.20em;
-  color:rgba(216,180,118,.86);
-}
-.home-v3 .home-copy h1{
-  max-width:430px;
-  font-size:clamp(35px,3vw,49px);
-  line-height:1.03;
-  letter-spacing:-.035em;
-  color:rgba(255,255,255,.96);
-}
-.home-v3 .home-copy h1 em{
-  margin-top:0;
-  font-size:1em;
-  color:rgba(216,180,118,.9);
-}
-.home-v3 .home-lead{
-  max-width:390px;
-  margin-top:15px;
-  font-size:16px;
-  line-height:1.35;
-  color:rgba(255,255,255,.80);
-}
-.home-v3 .home-note{
-  margin-top:18px;
-  font-size:9px;
-  letter-spacing:.15em;
-  color:rgba(255,255,255,.62);
-}
-.home-v3 .home-note::before{width:30px}
-
-/* Navigation fruit lives only inside the tree crown, never over the copy. */
-.home-v3 .apple{
-  width:112px;
-  --fruit-size:50px;
-}
-.home-v3 .apple-services{
-  left:21.5%; top:29%;
-  --fruit-size:52px; --hang-angle:-1.2deg; --swing:2.2deg; --lift:-2.5px; --stem-angle:-10deg; --duration:7.8s;
-}
-.home-v3 .apple-atmosphere{
-  left:39.5%; top:18.8%;
-  --fruit-size:48px; --hang-angle:1deg; --swing:1.9deg; --lift:-2px; --stem-angle:8deg; --duration:8.6s;
-}
-.home-v3 .apple-case{
-  left:31.8%; top:41%;
-  --fruit-size:54px; --hang-angle:-.7deg; --swing:2.1deg; --lift:-2.8px; --stem-angle:-6deg; --duration:8.1s;
-}
-.home-v3 .apple-contact{
-  left:47%; top:29.5%;
-  --fruit-size:50px; --hang-angle:.9deg; --swing:2deg; --lift:-2.3px; --stem-angle:9deg; --duration:8.9s;
-}
-.home-v3 .apple-label{
-  min-width:0;
-  margin-top:2px;
-  padding:0;
-  gap:5px;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  backdrop-filter:none!important;
-  box-shadow:none!important;
-  font:10px/1.08 Cormorant,Georgia,serif;
-  letter-spacing:.07em;
-  color:rgba(255,255,255,.78);
-  text-shadow:0 1px 5px rgba(0,0,0,.72);
-}
-.home-v3 .apple-label b{
-  font:7.5px/1 Arial,sans-serif;
-  letter-spacing:.04em;
-  color:rgba(216,180,118,.78);
-}
-.home-v3 .apple-label strong{font-weight:500}
-.home-v3 .apple:hover .apple-label,.home-v3 .apple:focus-visible .apple-label{
-  color:#fff;
-  text-shadow:0 1px 6px rgba(0,0,0,.78);
-}
-.home-v3 .apple:hover .apple-swing,.home-v3 .apple:focus-visible .apple-swing{
-  animation:apple-v3-invite .95s cubic-bezier(.4,0,.2,1) infinite alternate;
-}
-
-/* Moderate desktop: preserve a clear gap between crown navigation and copy. */
 @media(max-width:1200px) and (min-width:681px){
-  .home-v3 .home-copy{right:4vw;top:17%;width:min(390px,31vw)}
-  .home-v3 .home-copy h1{font-size:clamp(32px,3.35vw,43px)}
-  .home-v3 .home-lead{font-size:14.5px}
-  .home-v3 .apple{width:104px;--fruit-size:46px}
-  .home-v3 .apple-services{left:20%;top:30%;--fruit-size:48px}
-  .home-v3 .apple-atmosphere{left:38%;top:20%;--fruit-size:44px}
-  .home-v3 .apple-case{left:30%;top:42%;--fruit-size:50px}
-  .home-v3 .apple-contact{left:46%;top:31%;--fruit-size:46px}
+ /* Preserve the left-hand crown instead of cropping it off at tablet widths. */
+ .home-v3 .tree{object-position:left center}
+ .home-v3 .home-copy{right:4vw;top:17%;width:min(390px,31vw)}
+ .home-v3 .home-copy h1{font-size:clamp(32px,3.35vw,43px)}
+ .home-v3 .home-lead{font-size:14.5px}
+ .home-v3 .apple{width:104px;--fruit-size:46px}
+ .home-v3 .apple-services{--fruit-size:48px}
+ .home-v3 .apple-atmosphere{--fruit-size:44px}
+ .home-v3 .apple-case{--fruit-size:50px}
+ .home-v3 .apple-contact{--fruit-size:46px}
 }
-
-/* Mobile: copy stays high; apples begin below it and remain separated. */
 @media(max-width:680px){
-  .home-v3 .home-copy{
-    left:auto;
-    right:18px;
-    top:12.5%;
-    width:min(78vw,330px);
-    text-align:right;
-  }
-  .home-v3 .home-kicker{font-size:7px;margin-bottom:7px}
-  .home-v3 .home-copy h1{
-    margin-left:auto;
-    max-width:330px;
-    font-size:clamp(27px,7.7vw,34px);
-    line-height:1.02;
-  }
-  .home-v3 .home-lead{
-    margin:9px 0 0 auto;
-    max-width:300px;
-    font-size:12.5px;
-    line-height:1.26;
-  }
-  .home-v3 .apple{width:94px;--fruit-size:42px}
-  .home-v3 .apple-services{left:23%;top:48%;--fruit-size:44px}
-  .home-v3 .apple-atmosphere{left:56%;top:40%;--fruit-size:40px}
-  .home-v3 .apple-case{left:38%;top:59%;--fruit-size:46px}
-  .home-v3 .apple-contact{left:72%;top:52%;--fruit-size:43px}
-  .home-v3 .apple-label{font-size:9px;gap:3px}
-  .home-v3 .apple-label b{font-size:7px}
+ .home-v3 .orchard::after{background:linear-gradient(225deg,rgba(5,10,8,.34),rgba(5,10,8,.15) 28%,rgba(5,10,8,.03) 50%,transparent 68%),linear-gradient(180deg,rgba(5,10,8,.20),rgba(5,10,8,.04) 46%,rgba(5,10,8,.20))}
+ .home-v3 .garden-header{left:20px;right:20px;height:66px;grid-template-columns:auto 1fr}
+ .home-v3 .garden-header>p{display:none}
+ .home-v3 .garden-logo{font-size:21px}
+ .home-v3 .direct-contact{justify-self:end;font-size:9px;padding:10px 12px}
+ .home-v3 .home-copy{left:auto;right:18px;top:12.5%;width:min(78vw,330px);text-align:right}
+ .home-v3 .home-kicker{font-size:7px;margin-bottom:7px}
+ .home-v3 .home-copy h1{margin-left:auto;max-width:330px;font-size:clamp(27px,7.7vw,34px);line-height:1.02}
+ .home-v3 .home-lead{margin:9px 0 0 auto;max-width:300px;font-size:12.5px;line-height:1.26}
+ .home-v3 .home-note{display:none}
+ .home-v3 .apple{width:94px;min-height:60px;--fruit-size:42px}
+ .home-v3 .apple-services{left:23%;top:48%;--fruit-size:44px}
+ .home-v3 .apple-atmosphere{left:56%;top:40%;--fruit-size:40px}
+ .home-v3 .apple-case{left:38%;top:59%;--fruit-size:46px}
+ .home-v3 .apple-contact{left:65%;top:52%;--fruit-size:43px}
+ .home-v3 .apple-label{font-size:10px;gap:3px}
+ .home-v3 .apple-label b{font-size:7.5px}
+ .home-v3 .garden-footer{left:20px;right:20px;height:52px;grid-template-columns:1fr auto}
+ .home-v3 .garden-controls{display:none}
+ .home-v3 .garden-footer>span,.home-v3 .credits-link{font-size:9px}
 }
 @media(max-height:700px) and (max-width:680px){
-  .home-v3 .home-copy{top:11.5%}
-  .home-v3 .home-copy h1{font-size:27px}
-  .home-v3 .home-lead{font-size:11.5px}
-  .home-v3 .apple-services{top:49%}
-  .home-v3 .apple-atmosphere{top:41%}
-  .home-v3 .apple-case{top:60%}
-  .home-v3 .apple-contact{top:53%}
+ .home-v3 .home-copy{top:11.5%}
+ .home-v3 .home-copy h1{font-size:27px}
+ .home-v3 .home-lead{font-size:11.5px}
+ .home-v3 .apple{--fruit-size:40px}
 }
+@media(prefers-reduced-motion:reduce){.home-v3 .apple-swing{animation:none!important}.home-v3 .apple,.home-v3 .falling-apple{transition:none!important}}
