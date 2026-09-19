@@ -73,6 +73,8 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 .home-v3.motion-paused .apple-swing,.home-v3.document-hidden .apple-swing{animation-play-state:paused!important}
 
 @media(max-width:1200px) and (min-width:681px){
+ /* Preserve the left-hand crown instead of cropping it off at tablet widths. */
+ .home-v3 .tree{object-position:left center}
  .home-v3 .home-copy{right:4vw;top:17%;width:min(390px,31vw)}
  .home-v3 .home-copy h1{font-size:clamp(32px,3.35vw,43px)}
  .home-v3 .home-lead{font-size:14.5px}
