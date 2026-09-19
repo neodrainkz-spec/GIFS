@@ -1,0 +1,224 @@
+'use strict';
+(() => {
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const motionButton = document.querySelector('#motion-toggle');
+  const soundButton = document.querySelector('#sound-toggle');
+  const overlay = document.querySelector('.page-transition');
+  const status = document.querySelector('#garden-status');
+  let busy = false;
+  let paused = false;
+  let sound = false;
+  let audio = null;
+  let activeAnimations = [];
+
+  const syncMotion = () => {
+    const stopped = paused || reduced.matches;
+    document.body.classList.toggle('motion-paused', stopped);
+    motionButton.textContent = stopped ? 'Включить движение' : 'Остановить движение';
+    motionButton.setAttribute('aria-pressed', String(stopped));
+  };
+
+  motionButton.addEventListener('click', () => { paused = !paused; syncMotion(); });
+  reduced.addEventListener('change', syncMotion);
+  syncMotion();
+
+  soundButton.addEventListener('click', () => {
+    sound = !sound;
+    soundButton.textContent = sound ? 'Звук: вкл.' : 'Звук: выкл.';
+    soundButton.setAttribute('aria-pressed', String(sound));
+    if (!sound) return;
+    try {
+      audio ??= new (window.AudioContext || window.webkitAudioContext)();
+      audio.resume().catch(() => {});
+    } catch {
+      sound = false;
+      soundButton.textContent = 'Звук недоступен';
+      soundButton.setAttribute('aria-pressed', 'false');
+    }
+  });
+
+  function note(frequency, duration, volume) {
+    if (!sound || !audio) return;
+    try {
+      const now = audio.currentTime;
+      const oscillator = audio.createOscillator();
+      const gain = audio.createGain();
+      oscillator.type = 'sine';
+      oscillator.frequency.setValueAtTime(frequency, now);
+      gain.gain.setValueAtTime(.0001, now);
+      gain.gain.exponentialRampToValueAtTime(volume, now + .025);
+      gain.gain.exponentialRampToValueAtTime(.0001, now + duration);
+      oscillator.connect(gain).connect(audio.destination);
+      oscillator.start(now);
+      oscillator.stop(now + duration + .03);
+    } catch {}
+  }
+
+  function animate(element, keyframes, options) {
+    const animation = element.animate(keyframes, options);
+    activeAnimations.push(animation);
+    return animation.finished;
+  }
+
+  function reset() {
+    busy = false;
+    activeAnimations.forEach(animation => animation.cancel());
+    activeAnimations = [];
+    document.querySelectorAll('.falling-apple,.landing-ring').forEach(element => element.remove());
+    document.querySelectorAll('.apple').forEach(apple => {
+      apple.classList.remove('picking');
+      apple.removeAttribute('aria-disabled');
+    });
+    overlay.classList.remove('active');
+    overlay.style.clipPath = '';
+    document.body.removeAttribute('aria-busy');
+    status.textContent = '';
+  }
+
+  window.addEventListener('pageshow', reset);
+  document.addEventListener('visibilitychange', () => document.body.classList.toggle('document-hidden', document.hidden));
+
+  document.querySelectorAll('.apple').forEach(link => link.addEventListener('click', async event => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    event.preventDefault();
+    if (busy) return;
+    const destination = link.href;
+    if (reduced.matches || paused || !Element.prototype.animate) {
+      location.assign(destination);
+      return;
+    }
+
+    busy = true;
+    document.body.setAttribute('aria-busy', 'true');
+    document.querySelectorAll('.apple').forEach(apple => apple.setAttribute('aria-disabled', 'true'));
+    status.textContent = 'Открываем: ' + link.dataset.name;
+
+    const swing = link.querySelector('.apple-swing');
+    const image = swing.querySelector('img');
+    const rect = image.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const others = [...document.querySelectorAll('.apple')].filter(apple => apple !== link);
+    const landingTop = innerHeight - 72 - rect.height;
+    const drop = Math.max(100, landingTop - rect.top);
+    const isRightDrift = link.classList.contains('apple-atmosphere') || link.classList.contains('apple-contact');
+    const drift = isRightDrift ? Math.min(34, innerWidth * .028) : -Math.min(28, innerWidth * .024);
+    const spin = isRightDrift ? 86 : -74;
+    const clone = document.createElement('img');
+    clone.src = image.src;
+    clone.alt = '';
+    clone.className = 'falling-apple';
+    Object.assign(clone.style, {
+      left: rect.left + 'px',
+      top: rect.top + 'px',
+      width: rect.width + 'px',
+      height: rect.height + 'px'
+    });
+    document.body.append(clone);
+    link.classList.add('picking');
+    note(392, .24, .025);
+
+    try {
+      await Promise.all([
+        animate(clone, [
+          { transform: 'translate3d(0,0,0) rotate(180deg) scale(1)', offset: 0 },
+          { transform: 'translate3d(-1px,-8px,0) rotate(176deg) scale(1.035)', offset: .46 },
+          { transform: 'translate3d(1px,-4px,0) rotate(182deg) scale(1.018)', offset: 1 }
+        ], { duration: 270, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }),
+        ...others.map(apple => animate(apple, [
+          { opacity: 1 },
+          { opacity: .68 }
+        ], { duration: 340, easing: 'ease-out', fill: 'forwards' }))
+      ]);
+
+      await animate(clone, [
+        { transform: 'translate3d(1px,-4px,0) rotate(182deg) scale(1.018)', offset: 0 },
+        { transform: `translate3d(${drift * .10}px,${drop * .06}px,0) rotate(${180 + spin * .08}deg) scale(1.012)`, offset: .16 },
+        { transform: `translate3d(${drift * .36}px,${drop * .31}px,0) rotate(${180 + spin * .34}deg) scale(1.006)`, offset: .47 },
+        { transform: `translate3d(${drift * .74}px,${drop * .68}px,0) rotate(${180 + spin * .72}deg) scale(1.002)`, offset: .76 },
+        { transform: `translate3d(${drift}px,${drop}px,0) rotate(${180 + spin}deg) scale(1)`, offset: 1 }
+      ], { duration: 860, easing: 'cubic-bezier(.28,.03,.78,.42)', fill: 'forwards' });
+
+      const landingX = cx + drift;
+      const landingY = rect.top + drop + rect.height;
+      const ring = document.createElement('span');
+      ring.className = 'landing-ring';
+      Object.assign(ring.style, { left: (landingX - 28) + 'px', top: (landingY - 5) + 'px', width: '56px', height: '12px' });
+      document.body.append(ring);
+      note(118, .2, .035);
+      await Promise.all([
+        animate(clone, [
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${180 + spin}deg) scale(1,1)` },
+          { transform: `translate3d(${drift + 1}px,${drop + 5}px,0) rotate(${180 + spin + (isRightDrift ? 5 : -5)}deg) scale(1.075,.91)`, offset: .34 },
+          { transform: `translate3d(${drift - 1}px,${drop - 2}px,0) rotate(${180 + spin - (isRightDrift ? 2 : -2)}deg) scale(.995,1.02)`, offset: .68 },
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${180 + spin}deg) scale(1,1)` }
+        ], { duration: 330, easing: 'cubic-bezier(.2,.78,.25,1)', fill: 'forwards' }),
+        animate(ring, [
+          { transform: 'scale(.45)', opacity: .55 },
+          { transform: 'scale(2.1)', opacity: 0 }
+        ], { duration: 480, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' })
+      ]);
+
+      overlay.style.setProperty('--cx', landingX + 'px');
+      overlay.style.setProperty('--cy', landingY + 'px');
+      overlay.querySelector('.transition-name').textContent = link.dataset.name;
+      overlay.classList.add('active');
+      await animate(overlay, [
+        { clipPath: `circle(0 at ${landingX}px ${landingY}px)` },
+        { clipPath: `circle(${Math.hypot(innerWidth, innerHeight)}px at ${landingX}px ${landingY}px)` }
+      ], { duration: 680, easing: 'cubic-bezier(.2,.75,.25,1)', fill: 'forwards' });
+      location.assign(destination);
+    } catch {
+      location.assign(destination);
+    }
+  }));
+})();
+
+
+
+/* Source-image positions of four fruit; never displace them to avoid text/collisions. */
+(() => {
+ const orchard=document.querySelector('.home-v3 .orchard');
+ const image=orchard?.querySelector('.tree');
+ const header=document.querySelector('.home-v3 .garden-header');
+ const footer=document.querySelector('.home-v3 .garden-footer');
+ const fruit=[...document.querySelectorAll('.fruit-navigation .apple')];
+ if(!orchard||!image||!header||!footer||fruit.length!==4)return;
+ // Services, Approach, NeoDrain, Contacts. Desktop source is 1672x941.
+ // The mobile layout crops the same source photo from the LEFT to keep the crown.
+ const anchors={
+   desktop:[[.230,.300],[.340,.280],[.310,.420],[.120,.280]],
+   mobile:[[.130,.380],[.230,.280],[.210,.480],[.055,.270]]
+ };
+ let pending=false;
+ const mobile=matchMedia('(max-width:680px)');
+ function place(){
+   pending=false;
+   const iw=image.naturalWidth,ih=image.naturalHeight;
+   if(!iw||!ih)return;
+   const box=orchard.getBoundingClientRect(),w=box.width,h=box.height;
+   if(!w||!h)return;
+   const scale=Math.max(w/iw,h/ih),rw=iw*scale,rh=ih*scale;
+   const objectPosition=getComputedStyle(image).objectPosition;
+   const offsetX=(w-rw)*(objectPosition.startsWith('left')||objectPosition.startsWith('0%')?0:.5);
+   const offsetY=(h-rh)*.5;
+   const safeTop=header.getBoundingClientRect().bottom-box.top+20;
+   const safeBottom=footer.getBoundingClientRect().top-box.top-12;
+   fruit.forEach((link,i)=>{
+     const [u,v]=anchors[mobile.matches?'mobile':'desktop'][i];
+     const width=link.offsetWidth,height=link.offsetHeight;
+     const x=Math.max(width/2+5,Math.min(w-width/2-5,offsetX+u*rw));
+     const y=Math.max(safeTop,Math.min(safeBottom-height,offsetY+v*rh-height/2));
+     link.style.left=x.toFixed(2)+'px';
+     link.style.top=y.toFixed(2)+'px';
+   });
+ }
+ function queue(){if(!pending){pending=true;requestAnimationFrame(place)}}
+ image.addEventListener('load',queue);
+ window.addEventListener('resize',queue,{passive:true});
+ window.addEventListener('orientationchange',queue,{passive:true});
+ mobile.addEventListener?.('change',queue);
+ document.fonts?.ready.then(queue).catch(()=>{});
+ if('ResizeObserver' in window)new ResizeObserver(queue).observe(orchard);
+ if(image.complete)queue();
+})();
