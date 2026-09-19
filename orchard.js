@@ -210,11 +210,12 @@
     const height = bounds.height;
     if (!(width > 0 && height > 0)) return;
 
-    // Mirrors CSS object-fit:cover and object-position:center center exactly.
+    // Mirrors CSS object-fit:cover and the center/left object-position rules.
     const scale = Math.max(width / iw, height / ih);
     const renderedWidth = iw * scale;
     const renderedHeight = ih * scale;
-    const cropX = (width - renderedWidth) / 2;
+    const position = getComputedStyle(image).objectPosition;
+    const cropX = (width - renderedWidth) * (position.startsWith('left') ? 0 : .5);
     const cropY = (height - renderedHeight) / 2;
     const headerBottom = header.getBoundingClientRect().bottom - bounds.top;
     const footerTop = footer.getBoundingClientRect().top - bounds.top;
