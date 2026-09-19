@@ -191,7 +191,7 @@
   // Order: services, atmosphere, NeoDrain, contact.
   // Coordinates are on the source photograph, not on the browser viewport.
   const anchors = {
-    desktop: [[.225,.31],[.345,.25],[.31,.42],[.36,.36]],
+    desktop: [[.225,.31],[.345,.25],[.31,.42],[.385,.36]],
     mobile:  [[.27,.48],[.56,.40],[.41,.59],[.63,.52]]
   };
   const fruit = [...orchard.querySelectorAll('.fruit-navigation .apple')];
@@ -215,7 +215,7 @@
     const renderedWidth = iw * scale;
     const renderedHeight = ih * scale;
     const position = getComputedStyle(image).objectPosition;
-    const cropX = (width - renderedWidth) * (position.startsWith('left') ? 0 : .5);
+    const cropX = (width - renderedWidth) * ((position.startsWith('left') || position.startsWith('0%')) ? 0 : .5);
     const cropY = (height - renderedHeight) / 2;
     const headerBottom = header.getBoundingClientRect().bottom - bounds.top;
     const footerTop = footer.getBoundingClientRect().top - bounds.top;
