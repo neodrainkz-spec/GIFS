@@ -37,7 +37,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 .home-v3 .apple-services{left:21%;top:31%;--fruit-size:52px;--hang-angle:-1.2deg;--swing:2.2deg;--stem-angle:-10deg;--duration:7.8s}
 .home-v3 .apple-atmosphere{left:34%;top:25%;--fruit-size:48px;--hang-angle:1deg;--swing:1.9deg;--stem-angle:8deg;--duration:8.6s}
 .home-v3 .apple-case{left:30%;top:42%;--fruit-size:54px;--hang-angle:-.7deg;--swing:2.1deg;--stem-angle:-6deg;--duration:8.1s}
-.home-v3 .apple-contact{left:36%;top:36%;--fruit-size:50px;--hang-angle:.9deg;--swing:2deg;--stem-angle:9deg;--duration:8.9s}
+.home-v3 .apple-contact{left:38.5%;top:36%;--fruit-size:50px;--hang-angle:.9deg;--swing:2deg;--stem-angle:9deg;--duration:8.9s}
 .home-v3 .apple-swing{position:relative;display:block;flex:none;width:var(--fruit-size);height:var(--fruit-size);transform-origin:50% -10px;animation:apple-v3-hang var(--duration) cubic-bezier(.42,0,.58,1) infinite;filter:saturate(1.01) brightness(1.02) drop-shadow(0 7px 7px rgba(0,0,0,.38));will-change:transform}
 .home-v3 .apple-swing::before{content:"";position:absolute;left:50%;top:-13px;width:1.5px;height:15px;opacity:.82;background:linear-gradient(#3f2b1b,#745033);transform:translateX(-50%) rotate(var(--stem-angle));transform-origin:50% 100%;border-radius:999px}
 .home-v3 .apple-swing img{width:100%;height:100%;object-fit:contain;display:block;transform:rotate(180deg);user-select:none;pointer-events:none}
