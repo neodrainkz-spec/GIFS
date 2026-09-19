@@ -121,9 +121,9 @@
     try {
       await Promise.all([
         animate(clone, [
-          { transform: 'translate3d(0,0,0) rotate(0deg) scale(1)', offset: 0 },
-          { transform: 'translate3d(-1px,-8px,0) rotate(-4deg) scale(1.035)', offset: .46 },
-          { transform: 'translate3d(1px,-4px,0) rotate(2deg) scale(1.018)', offset: 1 }
+          { transform: 'translate3d(0,0,0) rotate(180deg) scale(1)', offset: 0 },
+          { transform: 'translate3d(-1px,-8px,0) rotate(176deg) scale(1.035)', offset: .46 },
+          { transform: 'translate3d(1px,-4px,0) rotate(182deg) scale(1.018)', offset: 1 }
         ], { duration: 270, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }),
         ...others.map(apple => animate(apple, [
           { opacity: 1 },
@@ -132,11 +132,11 @@
       ]);
 
       await animate(clone, [
-        { transform: 'translate3d(1px,-4px,0) rotate(2deg) scale(1.018)', offset: 0 },
-        { transform: `translate3d(${drift * .10}px,${drop * .06}px,0) rotate(${spin * .08}deg) scale(1.012)`, offset: .16 },
-        { transform: `translate3d(${drift * .36}px,${drop * .31}px,0) rotate(${spin * .34}deg) scale(1.006)`, offset: .47 },
-        { transform: `translate3d(${drift * .74}px,${drop * .68}px,0) rotate(${spin * .72}deg) scale(1.002)`, offset: .76 },
-        { transform: `translate3d(${drift}px,${drop}px,0) rotate(${spin}deg) scale(1)`, offset: 1 }
+        { transform: 'translate3d(1px,-4px,0) rotate(182deg) scale(1.018)', offset: 0 },
+        { transform: `translate3d(${drift * .10}px,${drop * .06}px,0) rotate(${180 + spin * .08}deg) scale(1.012)`, offset: .16 },
+        { transform: `translate3d(${drift * .36}px,${drop * .31}px,0) rotate(${180 + spin * .34}deg) scale(1.006)`, offset: .47 },
+        { transform: `translate3d(${drift * .74}px,${drop * .68}px,0) rotate(${180 + spin * .72}deg) scale(1.002)`, offset: .76 },
+        { transform: `translate3d(${drift}px,${drop}px,0) rotate(${180 + spin}deg) scale(1)`, offset: 1 }
       ], { duration: 860, easing: 'cubic-bezier(.28,.03,.78,.42)', fill: 'forwards' });
 
       const landingX = cx + drift;
@@ -148,10 +148,10 @@
       note(118, .2, .035);
       await Promise.all([
         animate(clone, [
-          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${spin}deg) scale(1,1)` },
-          { transform: `translate3d(${drift + 1}px,${drop + 5}px,0) rotate(${spin + (isRightDrift ? 5 : -5)}deg) scale(1.075,.91)`, offset: .34 },
-          { transform: `translate3d(${drift - 1}px,${drop - 2}px,0) rotate(${spin - (isRightDrift ? 2 : -2)}deg) scale(.995,1.02)`, offset: .68 },
-          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${spin}deg) scale(1,1)` }
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${180 + spin}deg) scale(1,1)` },
+          { transform: `translate3d(${drift + 1}px,${drop + 5}px,0) rotate(${180 + spin + (isRightDrift ? 5 : -5)}deg) scale(1.075,.91)`, offset: .34 },
+          { transform: `translate3d(${drift - 1}px,${drop - 2}px,0) rotate(${180 + spin - (isRightDrift ? 2 : -2)}deg) scale(.995,1.02)`, offset: .68 },
+          { transform: `translate3d(${drift}px,${drop}px,0) rotate(${180 + spin}deg) scale(1,1)` }
         ], { duration: 330, easing: 'cubic-bezier(.2,.78,.25,1)', fill: 'forwards' }),
         animate(ring, [
           { transform: 'scale(.45)', opacity: .55 },
@@ -172,4 +172,99 @@
       location.assign(destination);
     }
   }));
+})();
+
+
+/*
+ * Orchard image-space anchors (0..1 across the actual desktop/mobile image).
+ * object-fit:cover can crop the photograph; viewport percentages cannot track
+ * the branches. Keep the CSS percentage positions as the no-JavaScript fallback.
+ */
+(() => {
+  const orchard = document.querySelector('.home-v3 .orchard');
+  const image = orchard?.querySelector('.tree');
+  const header = document.querySelector('.home-v3 .garden-header');
+  const footer = document.querySelector('.home-v3 .garden-footer');
+  const copy = document.querySelector('.home-v3 .home-copy');
+  if (!orchard || !image || !header || !footer) return;
+
+  // Order: services, atmosphere, NeoDrain, contact.
+  // Coordinates are on the source photograph, not on the browser viewport.
+  const anchors = {
+    desktop: [[.225,.31],[.345,.25],[.31,.42],[.36,.36]],
+    mobile:  [[.27,.48],[.56,.40],[.41,.59],[.63,.52]]
+  };
+  const fruit = [...orchard.querySelectorAll('.fruit-navigation .apple')];
+  if (fruit.length !== 4) return;
+  const mobileView = matchMedia('(max-width: 680px)');
+  let pending = false;
+
+  function placeFruit() {
+    pending = false;
+    const iw = image.naturalWidth;
+    const ih = image.naturalHeight;
+    if (!(iw > 0 && ih > 0)) return;
+
+    const bounds = orchard.getBoundingClientRect();
+    const width = bounds.width;
+    const height = bounds.height;
+    if (!(width > 0 && height > 0)) return;
+
+    // Mirrors CSS object-fit:cover and object-position:center center exactly.
+    const scale = Math.max(width / iw, height / ih);
+    const renderedWidth = iw * scale;
+    const renderedHeight = ih * scale;
+    const cropX = (width - renderedWidth) / 2;
+    const cropY = (height - renderedHeight) / 2;
+    const headerBottom = header.getBoundingClientRect().bottom - bounds.top;
+    const footerTop = footer.getBoundingClientRect().top - bounds.top;
+    const copyRect = copy?.getBoundingClientRect();
+    const positions = anchors[mobileView.matches ? 'mobile' : 'desktop'];
+
+    fruit.forEach((link, i) => {
+      const [u, v] = positions[i];
+      const halfWidth = link.offsetWidth / 2;
+      const halfHeight = link.offsetHeight / 2;
+
+      // Include stem and visible focus ring in the safe area below the header.
+      const minY = Math.max(halfHeight + 8, headerBottom + halfHeight + 19);
+      const maxY = Math.max(minY, footerTop - halfHeight - 12);
+      const minX = halfWidth + 8;
+      const maxX = Math.max(minX, width - halfWidth - 8);
+
+      let x = Math.min(maxX, Math.max(minX, cropX + u * renderedWidth));
+      let y = Math.min(maxY, Math.max(minY, cropY + v * renderedHeight));
+
+      // In compact layouts, avoid positioning a fruit over the headline.
+      if (copyRect) {
+        const gap = 12;
+        const overlaps = x + halfWidth + gap > copyRect.left - bounds.left &&
+          x - halfWidth - gap < copyRect.right - bounds.left &&
+          y + halfHeight + gap > copyRect.top - bounds.top &&
+          y - halfHeight - gap < copyRect.bottom - bounds.top;
+        if (overlaps) {
+          const leftOfCopy = copyRect.left - bounds.left - halfWidth - gap;
+          if (leftOfCopy >= minX) x = Math.min(x, leftOfCopy);
+          else y = Math.min(maxY, Math.max(y, copyRect.bottom - bounds.top + halfHeight + gap));
+        }
+      }
+
+      link.style.left = x.toFixed(2) + 'px';
+      link.style.top = y.toFixed(2) + 'px';
+    });
+  }
+
+  function queuePlacement() {
+    if (pending) return;
+    pending = true;
+    requestAnimationFrame(placeFruit);
+  }
+
+  image.addEventListener('load', queuePlacement);
+  if (image.complete) queuePlacement();
+  window.addEventListener('resize', queuePlacement, { passive: true });
+  window.addEventListener('orientationchange', queuePlacement, { passive: true });
+  mobileView.addEventListener?.('change', queuePlacement);
+  if ('ResizeObserver' in window) new ResizeObserver(queuePlacement).observe(orchard);
+  document.fonts?.ready.then(queuePlacement).catch(() => {});
 })();
