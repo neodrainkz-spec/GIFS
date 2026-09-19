@@ -222,6 +222,7 @@
     const copyRect = copy?.getBoundingClientRect();
     const positions = anchors[mobileView.matches ? 'mobile' : 'desktop'];
 
+    const placed = [];
     fruit.forEach((link, i) => {
       const [u, v] = positions[i];
       const halfWidth = link.offsetWidth / 2;
@@ -250,8 +251,40 @@
         }
       }
 
+      // If the image-space positions converge on a narrow screen, prevent
+      // invisible overlapping link boxes from stealing each other's clicks.
+      const originalX = x;
+      const originalY = y;
+      const candidates = [[x, y]];
+      for (const item of placed) {
+        candidates.push(
+          [item.x - item.hw - halfWidth - 10, y],
+          [item.x + item.hw + halfWidth + 10, y],
+          [x, item.y - item.hh - halfHeight - 10],
+          [x, item.y + item.hh + halfHeight + 10]
+        );
+      }
+      const hitsCopy = (cx, cy) => copyRect &&
+        cx + halfWidth + 8 > copyRect.left - bounds.left &&
+        cx - halfWidth - 8 < copyRect.right - bounds.left &&
+        cy + halfHeight + 8 > copyRect.top - bounds.top &&
+        cy - halfHeight - 8 < copyRect.bottom - bounds.top;
+      const isClear = (cx, cy) => !hitsCopy(cx, cy) &&
+        placed.every(item =>
+          Math.abs(cx - item.x) >= halfWidth + item.hw + 8 ||
+          Math.abs(cy - item.y) >= halfHeight + item.hh + 8
+        );
+      const safe = candidates
+        .filter(([cx, cy]) => cx >= minX && cx <= maxX && cy >= minY && cy <= maxY && isClear(cx, cy))
+        .sort((a, b) =>
+          Math.hypot(a[0] - originalX, a[1] - originalY) -
+          Math.hypot(b[0] - originalX, b[1] - originalY)
+        );
+      if (safe.length) [x, y] = safe[0];
+
       link.style.left = x.toFixed(2) + 'px';
       link.style.top = y.toFixed(2) + 'px';
+      placed.push({ x, y, hw: halfWidth, hh: halfHeight });
     });
   }
 
