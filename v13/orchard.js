@@ -190,12 +190,13 @@
 
   // Order: services, atmosphere, NeoDrain, contact.
   // Coordinates are on the source photograph, not on the browser viewport.
-  // All seven link centers are points on the source photographs.
+  // Fruit center locations are calibrated to branch-bearing parts of the source photographs.
+  // Desktop markers were inspected against the 1457px user screenshot of the actual tree.
   // Calibrated against the tree crown and branch geometry, never window %.
   // Order: Services, Approach, NeoDrain, Contacts, Sites, Chatbots, AI.
   const anchors = {
-    desktop: [[.220,.285],[.365,.245],[.308,.400],[.140,.280],[.098,.400],[.300,.225],[.230,.525]],
-    mobile:  [[.270,.480],[.560,.400],[.330,.620],[.630,.520],[.170,.370],[.770,.670],[.190,.745]]
+    desktop: [[.220,.299],[.360,.246],[.327,.413],[.114,.218],[.120,.402],[.265,.195],[.201,.482]],
+    mobile:  [[.280,.470],[.540,.430],[.350,.620],[.580,.560],[.190,.380],[.420,.330],[.190,.745]]
   };
   const fruit = [...orchard.querySelectorAll('.fruit-navigation .apple')];
   if (fruit.length !== 7) return;
