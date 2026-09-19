@@ -81,3 +81,12 @@
  .home-v3 .garden-header,.home-v3 .garden-footer{position:absolute}
  .home-v3 .home-copy{top:clamp(108px,14%,145px)}
 }
+
+/* Keep the mobile headline in a right-hand column instead of spanning the
+   whole canopy; otherwise fruit navigation gets pushed into empty sky. */
+@media(max-width:680px){
+ .home-v3 .home-copy{width:min(60vw,258px);right:16px;text-align:right}
+ .home-v3 .home-copy h1{font-size:clamp(24px,7.05vw,32px);line-height:1.055}
+ .home-v3 .home-lead{font-size:clamp(12px,3.25vw,14px);line-height:1.28;margin-top:11px}
+ .home-v3 .home-kicker{font-size:7px;letter-spacing:.12em}
+}
