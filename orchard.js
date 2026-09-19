@@ -197,7 +197,7 @@
   // moves from open sky to the left-hand crown.
   const anchors = {
     desktop: [[.220,.285],[.360,.245],[.308,.400],[.137,.245]],
-    mobile:  [[.270,.480],[.560,.400],[.330,.590],[.630,.520]]
+    mobile:  [[.270,.480],[.560,.400],[.330,.620],[.630,.520]]
   };
   const fruit = [...orchard.querySelectorAll('.fruit-navigation .apple')];
   if (fruit.length !== 4) return;
