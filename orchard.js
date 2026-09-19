@@ -190,9 +190,14 @@
 
   // Order: services, atmosphere, NeoDrain, contact.
   // Coordinates are on the source photograph, not on the browser viewport.
+  // Desktop stems were calibrated against the approved 1672x941 photo:
+  // branch attachments at approximately (300,357), (520,320),
+  // (440,455), and (175,320) on the 1457x872 reference screenshot.
+  // The second apple sits LOWER than the top header line, and the fourth
+  // moves from open sky to the left-hand crown.
   const anchors = {
-    desktop: [[.225,.31],[.345,.25],[.31,.42],[.385,.36]],
-    mobile:  [[.27,.48],[.56,.40],[.41,.59],[.63,.52]]
+    desktop: [[.220,.285],[.360,.245],[.308,.400],[.137,.245]],
+    mobile:  [[.270,.480],[.560,.400],[.330,.620],[.630,.520]]
   };
   const fruit = [...orchard.querySelectorAll('.fruit-navigation .apple')];
   if (fruit.length !== 4) return;
@@ -216,7 +221,7 @@
     const renderedHeight = ih * scale;
     const position = getComputedStyle(image).objectPosition;
     const cropX = (width - renderedWidth) * ((position.startsWith('left') || position.startsWith('0%')) ? 0 : .5);
-    const cropY = (height - renderedHeight) / 2;
+    const cropY = (height - renderedHeight) * (position.endsWith('top') ? 0 : .5);
     const headerBottom = header.getBoundingClientRect().bottom - bounds.top;
     const footerTop = footer.getBoundingClientRect().top - bounds.top;
     const copyRect = copy?.getBoundingClientRect();
