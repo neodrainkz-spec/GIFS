@@ -18,7 +18,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
 /* The header line is decorative: only actual header links intercept pointer input. */
 .home-v3 .garden-header{position:fixed;top:0;left:4.2vw;right:4.2vw;height:86px;z-index:20;display:grid;grid-template-columns:auto 1fr auto;align-items:center;border-bottom:1px solid var(--line);background:transparent;pointer-events:none}
 .home-v3 .garden-header a{pointer-events:auto}
-.home-v3 .garden-logo{padding:0 .38em .05em .14em;font:3.5rem/1.45 Ballet,Cormorant,serif;letter-spacing:normal;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5);white-space:nowrap}
+.home-v3 .garden-logo{padding:0 .38em .05em .14em;font:3.5rem/1.45 Ballet,Cormorant,serif;letter-spacing:.09em;font-feature-settings:"kern" 1,"liga" 1;color:#fff;text-shadow:0 2px 16px rgba(0,0,0,.5);white-space:nowrap}
 .home-v3 .garden-header>p{margin:0;justify-self:center;font:11px/1.4 Arial,sans-serif;letter-spacing:.19em;text-transform:uppercase;color:rgba(255,255,255,.82)}
 .home-v3 .direct-contact{font:11px/1 Arial,sans-serif;letter-spacing:.09em;text-transform:uppercase;border:1px solid rgba(255,255,255,.56);border-radius:999px;padding:14px 19px;background:rgba(7,13,10,.12);backdrop-filter:blur(5px)}
 .home-v3 .direct-contact:hover{background:rgba(255,255,255,.12)}
@@ -89,7 +89,7 @@ body.home-v3{position:fixed;inset:0;color:var(--cream);font-family:Cormorant,Geo
  .home-v3 .orchard::after{background:linear-gradient(225deg,rgba(5,10,8,.34),rgba(5,10,8,.15) 28%,rgba(5,10,8,.03) 50%,transparent 68%),linear-gradient(180deg,rgba(5,10,8,.20),rgba(5,10,8,.04) 46%,rgba(5,10,8,.20))}
  .home-v3 .garden-header{left:20px;right:20px;height:66px;grid-template-columns:auto 1fr}
  .home-v3 .garden-header>p{display:none}
- .home-v3 .garden-logo{font-size:2.5rem}
+ .home-v3 .garden-logo{font-size:2.5rem;letter-spacing:.075em}
  .home-v3 .direct-contact{justify-self:end;font-size:9px;padding:10px 12px}
  .home-v3 .home-copy{left:auto;right:18px;top:12.5%;width:min(78vw,330px);text-align:right}
  .home-v3 .home-kicker{font-size:7px;margin-bottom:7px}
