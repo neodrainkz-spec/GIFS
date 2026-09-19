@@ -208,7 +208,7 @@
      const [u,v]=anchors[mobile.matches?'mobile':'desktop'][i];
      const width=link.offsetWidth,height=link.offsetHeight;
      const x=Math.max(width/2+5,Math.min(w-width/2-5,offsetX+u*rw));
-     const y=Math.max(safeTop,Math.min(safeBottom-height,offsetY+v*rh-height/2));
+     const y=Math.max(safeTop+height/2,Math.min(safeBottom-height/2,offsetY+v*rh));
      link.style.left=x.toFixed(2)+'px';
      link.style.top=y.toFixed(2)+'px';
    });
